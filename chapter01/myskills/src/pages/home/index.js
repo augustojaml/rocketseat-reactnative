@@ -8,6 +8,8 @@ import {
   StatusBar,
   TouchableOpacity,
 } from 'react-native';
+import {Button} from '../../components/Button';
+import {SkillCard} from '../../components/SkillCard';
 
 export function Home() {
   const [skill, setSkill] = useState('');
@@ -35,20 +37,11 @@ export function Home() {
           onChangeText={setSkill}
           value={skill}
         />
-        <TouchableOpacity
-          style={styles.button}
-          activeOpacity={0.6}
-          onPress={handleAddNewSkill}>
-          <Text style={styles.buttonText}>Add Skill</Text>
-        </TouchableOpacity>
+        <Button title="Add Skill" onPress={handleAddNewSkill} />
         <Text style={[styles.title, styles.titleListSkills]}>My Skill's</Text>
 
         {skills.map(skl => (
-          <TouchableOpacity
-            key={new Date().getTime()}
-            style={styles.buttonSkill}>
-            <Text style={styles.textSkill}>{skl}</Text>
-          </TouchableOpacity>
+          <SkillCard key={skl} skl={skl} />
         ))}
       </SafeAreaView>
     </>
@@ -75,18 +68,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
     borderRadius: 8,
   },
-  button: {
-    backgroundColor: '#A370F7',
-    padding: 15,
-    borderRadius: 8,
-    alignItems: 'center',
-    marginTop: 20,
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 17,
-    fontWeight: 'bold',
-  },
   titleListSkills: {
     color: '#fff',
     fontSize: 24,
@@ -95,17 +76,5 @@ const styles = StyleSheet.create({
     paddingBottom: 15,
     borderBottomWidth: 1,
     borderBottomColor: '#212121',
-  },
-  buttonSkill: {
-    backgroundColor: '#1f1e25',
-    padding: 20,
-    borderRadius: 50,
-    marginTop: 20,
-    alignItems: 'center',
-  },
-  textSkill: {
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: 'bold',
   },
 });
