@@ -1,12 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   Text,
   StyleSheet,
   SafeAreaView,
   TextInput,
   Platform,
-  StatusBar,
-  TouchableOpacity,
+  FlatList,
 } from 'react-native';
 import {Button} from '../../components/Button';
 import {SkillCard} from '../../components/SkillCard';
@@ -14,6 +13,7 @@ import {SkillCard} from '../../components/SkillCard';
 export function Home() {
   const [skill, setSkill] = useState('');
   const [skills, setSkills] = useState([]);
+  const [greeting, setGreeting] = useState('Good morning');
 
   function handleAddNewSkill() {
     if (skill === '') {
@@ -25,11 +25,21 @@ export function Home() {
     setSkill('');
   }
 
+  useEffect(() => {
+    const currentHour = new Date().getHours();
+    if (currentHour > 4 && currentHour < 12) {
+      setGreeting('Good Morning');
+    } else if (currentHour >= 12 && currentHour < 18) {
+      setGreeting('Good afternoon');
+    } else {
+      setGreeting('Good Night');
+    }
+  }, []);
+
   return (
     <>
-      <StatusBar backgroundColor="#121015" />
       <SafeAreaView style={styles.container}>
-        <Text style={styles.title}>Welcome, Augusto</Text>
+        <Text style={styles.title}>{greeting}, Augusto</Text>
         <TextInput
           style={styles.input}
           placeholder="New Skill"
@@ -39,10 +49,11 @@ export function Home() {
         />
         <Button title="Add Skill" onPress={handleAddNewSkill} />
         <Text style={[styles.title, styles.titleListSkills]}>My Skill's</Text>
-
-        {skills.map(skl => (
-          <SkillCard key={skl} skl={skl} />
-        ))}
+        <FlatList
+          data={skills}
+          keyExtractor={item => item}
+          renderItem={({item}) => <SkillCard skl={item} />}
+        />
       </SafeAreaView>
     </>
   );
