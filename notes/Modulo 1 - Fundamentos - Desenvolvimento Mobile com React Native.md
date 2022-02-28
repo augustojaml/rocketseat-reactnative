@@ -2,7 +2,7 @@
 tags: [reactnative]
 title: Modulo 1 - Fundamentos - Desenvolvimento Mobile com React Native
 created: '2022-02-26T02:51:52.765Z'
-modified: '2022-02-26T03:11:29.093Z'
+modified: '2022-02-27T23:54:08.859Z'
 ---
 
 # Modulo 1 - Fundamentos - Desenvolvimento Mobile com React Native
@@ -42,4 +42,72 @@ yarn run android
 ```bash
 npx react-native run adroid
 ```
+
+## Estrutura do jsx
+```js
+import React from 'react';
+import {View, Text, StyleSheet} from 'react-native';
+
+export function Home() {
+  return (
+    <>
+      <View style={styles.container}>
+        <Text>React Native</Text>
+      </View>
+    </>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
+
+```
+
+### Adicionando Typescript
+
+#### instalar Dependências
+
+```bash
+yarn add -D typescript @types/jest @types/react @types/react-native @types/react-test-renderer
+```
+
+#### criar arquivo tsconfig.json
+```json
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "jsx": "react-native",
+    "lib": ["es2017"],
+    "moduleResolution": "node",
+    "noEmit": true,
+    "strict": true,
+    "target": "esnext"
+  },
+  "exclude": [
+    "node_modules",
+    "babel.config.js",
+    "metro.config.js",
+    "jest.config.js"
+  ]
+}
+```
+
+### Documentação diversas
+
+```bash
+https://devdocs.io/
+```
+
+
+
+
+
 
