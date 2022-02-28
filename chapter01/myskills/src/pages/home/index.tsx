@@ -10,19 +10,32 @@ import {
 import {Button} from '../../components/Button';
 import {SkillCard} from '../../components/SkillCard';
 
-export function Home() {
+interface SkillProps {
+  id: string;
+  name: string;
+}
+
+export function Home(): JSX.Element {
   const [skill, setSkill] = useState('');
-  const [skills, setSkills] = useState([]);
+  const [skills, setSkills] = useState<SkillProps[]>([]);
   const [greeting, setGreeting] = useState('Good morning');
 
-  function handleAddNewSkill() {
+  function handleAddSkill(): void {
     if (skill === '') {
       return;
     }
 
-    setSkills(state => [...state, skill]);
+    const data = {
+      id: String(new Date().getTime()),
+      name: skill,
+    };
+    setSkills(state => [...state, data]);
 
     setSkill('');
+  }
+
+  function handleRemoveSkill(id: string) {
+    setSkills(state => state.filter(skl => skl.id !== id));
   }
 
   useEffect(() => {
@@ -47,12 +60,21 @@ export function Home() {
           onChangeText={setSkill}
           value={skill}
         />
-        <Button title="Add Skill" onPress={handleAddNewSkill} />
+        <Button
+          activeOpacity={0.6}
+          title="Add Skill"
+          onPress={handleAddSkill}
+        />
         <Text style={[styles.title, styles.titleListSkills]}>My Skill's</Text>
         <FlatList
           data={skills}
-          keyExtractor={item => item}
-          renderItem={({item}) => <SkillCard skl={item} />}
+          keyExtractor={item => item.id}
+          renderItem={({item}) => (
+            <SkillCard
+              title={item.name}
+              onPress={() => handleRemoveSkill(item.id)}
+            />
+          )}
         />
       </SafeAreaView>
     </>
