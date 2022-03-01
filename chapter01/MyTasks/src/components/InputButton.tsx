@@ -1,22 +1,43 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import {
   View,
-  Text,
   StyleSheet,
   TextInput,
   TouchableOpacity,
+  Keyboard,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 
 import {appStyle} from '../styles';
 
-function InputButton() {
+interface inputButtonProps {
+  addTask: (task: string) => void;
+}
+
+function InputButton({addTask}: inputButtonProps) {
+  const [taskInput, setTaskInput] = useState('');
+
+  function handleAddTask() {
+    addTask(taskInput);
+    setTaskInput('');
+    Keyboard.dismiss();
+  }
+
   return (
     <>
       <View style={styles.container}>
-        <TextInput style={styles.textInput} placeholder="Adicione uma tarefa" />
-        <TouchableOpacity style={styles.buttonContainer} activeOpacity={0.75}>
+        <TextInput
+          value={taskInput}
+          onChangeText={setTaskInput}
+          style={styles.textInput}
+          placeholder="Adicione uma tarefa"
+          onSubmitEditing={handleAddTask}
+        />
+        <TouchableOpacity
+          style={styles.buttonContainer}
+          activeOpacity={0.75}
+          onPress={handleAddTask}>
           <Icon
             style={styles.iconButton}
             name="chevron-right"
