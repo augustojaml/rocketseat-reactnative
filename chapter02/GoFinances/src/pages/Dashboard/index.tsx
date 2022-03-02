@@ -1,27 +1,44 @@
 import React from 'react';
-import { Text, TouchableOpacity } from 'react-native';
-import { useTheme } from 'styled-components';
-import { useAppTheme } from '../../hooks/useAppTheme';
+import { Text } from 'react-native';
+import { HighlightCard } from '../../components/HighlightCard';
+import { ToggleTheme } from '../../components/ToggleTheme';
 
-import { Container, Title } from './styled';
+import {
+  Container,
+  Header,
+  UserWrapper,
+  UserActions,
+  UserInfo,
+  Photo,
+  User,
+  Greeting,
+  Name,
+  Icon,
+  HighlightCardsScroll,
+} from './styled';
 
 export function Dashboard() {
-  const { appTheme, toggleTheme } = useAppTheme();
-
   return (
     <>
       <Container>
-        <Title>Dashboard</Title>
-
-        {appTheme.theme === 'dark' ? (
-          <TouchableOpacity onPress={toggleTheme}>
-            <Text style={{ fontSize: 30 }}>🌛</Text>
-          </TouchableOpacity>
-        ) : (
-          <TouchableOpacity onPress={toggleTheme}>
-            <Text style={{ fontSize: 30 }}>🌞</Text>
-          </TouchableOpacity>
-        )}
+        <Header>
+          <ToggleTheme />
+          <UserWrapper>
+            <UserInfo>
+              <Photo source={{ uri: 'https://github.com/augustojaml.png' }} />
+              <User>
+                <Greeting>Ola, </Greeting>
+                <Name>Augusto Monteiro</Name>
+              </User>
+            </UserInfo>
+            <Icon name="power" />
+          </UserWrapper>
+        </Header>
+        <HighlightCardsScroll>
+          <HighlightCard />
+          <HighlightCard />
+          <HighlightCard />
+        </HighlightCardsScroll>
       </Container>
     </>
   );

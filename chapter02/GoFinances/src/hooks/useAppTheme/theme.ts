@@ -18,7 +18,13 @@ export const theme = {
       shape: '#fff',
       title: '#363F5F',
       text: '#969CB2',
+      text_secondary: '#000000',
       background: '#F0F2F5',
+    },
+    fonts: {
+      regular: 'Poppins_400Regular',
+      medium: 'Poppins_500Medium',
+      bold: 'Poppins_700Bold',
     },
   },
 
@@ -39,7 +45,13 @@ export const theme = {
       shape: '#8257e5',
       title: '#969CB2',
       text: '#363F5F',
+      text_secondary: '#FFFFFF',
       background: '#121214',
+    },
+    fonts: {
+      regular: 'Montserrat_400Regular',
+      medium: 'Montserrat_500Medium',
+      bold: 'Montserrat_700Bold',
     },
   },
 };

@@ -2,7 +2,7 @@
 tags: [reactnative]
 title: Modulo 2
 created: '2022-03-01T22:43:18.192Z'
-modified: '2022-03-01T23:46:56.830Z'
+modified: '2022-03-02T13:25:17.853Z'
 ---
 
 # Modulo 2
@@ -51,6 +51,44 @@ expo start
 ```
 
 #### Altere o os arquivos `*.js` para `*.tsx`
+
+### Adicionando Typescript
+
+#### instalar Dependências
+
+```bash
+yarn add -D typescript @types/jest @types/react @types/react-native @types/react-test-renderer
+```
+
+#### criar arquivo tsconfig.json
+```json
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "jsx": "react-native",
+    "lib": ["es2017"],
+    "moduleResolution": "node",
+    "noEmit": true,
+    "strict": true,
+    "target": "esnext"
+  },
+  "exclude": [
+    "node_modules",
+    "babel.config.js",
+    "metro.config.js",
+    "jest.config.js"
+  ]
+}
+```
+
+### Documentação diversas
+
+```bash
+https://devdocs.io/
+```
 
 
 

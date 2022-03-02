@@ -2,7 +2,7 @@
 tags: [reactnative]
 title: Modulo 1
 created: '2022-02-26T02:51:52.765Z'
-modified: '2022-03-01T22:43:41.783Z'
+modified: '2022-03-02T13:24:44.029Z'
 ---
 
 # Modulo 1
@@ -70,43 +70,6 @@ const styles = StyleSheet.create({
 
 ```
 
-### Adicionando Typescript
-
-#### instalar Dependências
-
-```bash
-yarn add -D typescript @types/jest @types/react @types/react-native @types/react-test-renderer
-```
-
-#### criar arquivo tsconfig.json
-```json
-{
-  "compilerOptions": {
-    "allowJs": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "isolatedModules": true,
-    "jsx": "react-native",
-    "lib": ["es2017"],
-    "moduleResolution": "node",
-    "noEmit": true,
-    "strict": true,
-    "target": "esnext"
-  },
-  "exclude": [
-    "node_modules",
-    "babel.config.js",
-    "metro.config.js",
-    "jest.config.js"
-  ]
-}
-```
-
-### Documentação diversas
-
-```bash
-https://devdocs.io/
-```
 
 
 
