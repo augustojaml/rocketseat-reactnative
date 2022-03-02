@@ -1,13 +1,15 @@
 ---
 tags: [reactnative]
-title: Modulo 1 - Fundamentos - Desenvolvimento Mobile com React Native
+title: Modulo 1
 created: '2022-02-26T02:51:52.765Z'
-modified: '2022-02-27T23:54:08.859Z'
+modified: '2022-03-01T22:43:41.783Z'
 ---
 
-# Modulo 1 - Fundamentos - Desenvolvimento Mobile com React Native
+# Modulo 1
 
-## O que é React Native
+## Fundamentos - Desenvolvimento Mobile com React Native
+
+### O que é React Native
 
 - Framework de criação de aplicação nativas mobile
 - Projeto Open Source mantido pelo Facebook, desde 2015
