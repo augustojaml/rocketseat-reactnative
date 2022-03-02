@@ -1,7 +1,7 @@
 import React from 'react';
-import { Text } from 'react-native';
 import { HighlightCard } from '../../components/HighlightCard';
 import { ToggleTheme } from '../../components/ToggleTheme';
+import { Transaction, TransactionCard, TransactionProps } from '../../components/TransactionCard';
 
 import {
   Container,
@@ -15,14 +15,52 @@ import {
   Name,
   Icon,
   HighlightCardsScroll,
+  TransactionContainer,
+  Title,
+  TransactionList,
 } from './styled';
+
+const data: Transaction[] = [
+  {
+    id: '1',
+    type: 'positive',
+    title: 'Desenvolvimento de site',
+    amount: 'R$ 12.000,00',
+    category: {
+      name: 'Vendas',
+      icon: 'dollar-sign',
+    },
+    date: '02/03/2022',
+  },
+  {
+    id: '2',
+    type: 'negative',
+    title: 'Hamburgueria Pizzy',
+    amount: 'R$ 59,00',
+    category: {
+      name: 'Alimentação',
+      icon: 'coffee',
+    },
+    date: '02/03/2022',
+  },
+  {
+    id: '3',
+    type: 'negative',
+    title: 'Aluguel do apartamento',
+    amount: 'R$ 1.200,00',
+    category: {
+      name: 'Casa',
+      icon: 'shopping-bag',
+    },
+    date: '02/03/2022',
+  },
+];
 
 export function Dashboard() {
   return (
     <>
       <Container>
         <Header>
-          <ToggleTheme />
           <UserWrapper>
             <UserInfo>
               <Photo source={{ uri: 'https://github.com/augustojaml.png' }} />
@@ -31,14 +69,26 @@ export function Dashboard() {
                 <Name>Augusto Monteiro</Name>
               </User>
             </UserInfo>
-            <Icon name="power" />
+            <UserActions>
+              <Icon name="power" />
+              <ToggleTheme />
+            </UserActions>
           </UserWrapper>
         </Header>
         <HighlightCardsScroll>
-          <HighlightCard />
-          <HighlightCard />
-          <HighlightCard />
+          <HighlightCard type="up" title="Entradas" amount="R$ 17.400,00" lastTransaction="Última entrada dia 13 de abril" />
+          <HighlightCard type="down" title="Saídas" amount="R$ 1.259,00" lastTransaction="Última saída dia 03 de abril" />
+          <HighlightCard type="total" title="Total" amount="R$ 16.141,00" lastTransaction="01 à 16 de abril" />
         </HighlightCardsScroll>
+
+        <TransactionContainer>
+          <Title>Listagem</Title>
+          <TransactionList
+            data={data}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => <TransactionCard transaction={item} />}
+          />
+        </TransactionContainer>
       </Container>
     </>
   );

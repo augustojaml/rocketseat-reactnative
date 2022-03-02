@@ -1,7 +1,9 @@
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 import { Feather } from '@expo/vector-icons';
-import { getStatusBarHeight } from 'react-native-iphone-x-helper';
+import { getBottomSpace, getStatusBarHeight } from 'react-native-iphone-x-helper';
+import { FlatList, FlatListProps } from 'react-native';
+import { Transaction } from '../../components/TransactionCard';
 
 export const Container = styled.View`
   flex: 1;
@@ -22,7 +24,7 @@ export const UserWrapper = styled.View`
   width: 100%;
 
   padding: 0 24px;
-  margin-top: ${getStatusBarHeight() + RFValue(64)}px;
+  margin-top: ${getStatusBarHeight() + RFValue(30)}px;
 
   flex-direction: row;
   align-items: center;
@@ -63,7 +65,7 @@ export const Name = styled.Text`
 `;
 
 export const Icon = styled(Feather)`
-  color: ${({ theme }) => theme.colors.secondary};
+  color: ${({ theme }) => theme.colors.attention};
   font-size: ${RFValue(24)}px;
 `;
 
@@ -76,11 +78,25 @@ export const HighlightCardsScroll = styled.ScrollView.attrs({
 })`
   width: 100%;
   position: absolute;
-  margin-top: ${RFPercentage(25)}px;
+  margin-top: ${RFPercentage(20)}px;
 `;
 
-// export const Title = styled.Text`
-//   font-size: 30px;
-//   color: ${({ theme }) => theme.colors.title};
-//   font-family: ${({ theme }) => theme.fonts.bold};
-// `;
+export const TransactionContainer = styled.View`
+  flex: 1;
+  padding: 0 20px;
+  margin-top: ${RFPercentage(14)}px;
+`;
+
+export const Title = styled.Text`
+  font-size: ${RFValue(18)}px;
+  color: ${({ theme }) => theme.colors.text_secondary};
+  font-family: ${({ theme }) => theme.fonts.regular};
+  margin-bottom: 10px;
+`;
+
+export const TransactionList = styled(FlatList as new (props: FlatListProps<Transaction>) => FlatList<Transaction>).attrs({
+  showsVerticalScrollIndicator: false,
+  contentContainerStyle: {
+    paddingBottom: getBottomSpace(),
+  },
+})``;
