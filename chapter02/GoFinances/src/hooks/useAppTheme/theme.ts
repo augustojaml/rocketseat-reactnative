@@ -49,9 +49,12 @@ export const theme = {
       background: '#121214',
     },
     fonts: {
-      regular: 'Montserrat_400Regular',
-      medium: 'Montserrat_500Medium',
-      bold: 'Montserrat_700Bold',
+      // regular: 'Montserrat_400Regular',
+      // medium: 'Montserrat_500Medium',
+      // bold: 'Montserrat_700Bold',
+      regular: 'Poppins_400Regular',
+      medium: 'Poppins_500Medium',
+      bold: 'Poppins_700Bold',
     },
   },
 };

@@ -9,7 +9,6 @@ interface IAppThemeProvider {
 interface IAppThemeContext {
   appTheme: typeof theme.dark | typeof theme.light;
   toggleTheme: () => void;
-  activeTheme: string;
 }
 
 interface IAppTheme {
@@ -20,7 +19,6 @@ const AppThemeContext = createContext({} as IAppThemeContext);
 
 function AppThemeProvider({ children }: IAppThemeProvider) {
   const [appTheme, setAppTheme] = useState<typeof theme.dark | typeof theme.light>(theme.light);
-  const [activeTheme, setActiveTheme] = useState('light');
 
   function toggleTheme() {
     appTheme === theme.dark ? setAppTheme(theme.light) : setAppTheme(theme.dark);
@@ -28,7 +26,7 @@ function AppThemeProvider({ children }: IAppThemeProvider) {
 
   return (
     <>
-      <AppThemeContext.Provider value={{ appTheme, toggleTheme, activeTheme }}>{children}</AppThemeContext.Provider>
+      <AppThemeContext.Provider value={{ appTheme, toggleTheme }}>{children}</AppThemeContext.Provider>
     </>
   );
 }

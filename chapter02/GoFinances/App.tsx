@@ -1,9 +1,11 @@
 import React from 'react';
 import AppLoading from 'expo-app-loading';
+import { StatusBar } from 'expo-status-bar';
 
 import { AppTheme, AppThemeProvider } from './src/hooks/useAppTheme';
 
 import { Dashboard } from './src/pages/Dashboard';
+import { Register } from './src/pages/Register';
 
 import { useFonts, Poppins_400Regular, Poppins_500Medium, Poppins_700Bold } from '@expo-google-fonts/poppins';
 import { Montserrat_400Regular, Montserrat_500Medium, Montserrat_700Bold } from '@expo-google-fonts/montserrat';
@@ -26,7 +28,8 @@ export default function App() {
     <>
       <AppThemeProvider>
         <AppTheme>
-          <Dashboard />
+          <StatusBar style="light" />
+          <Register />
         </AppTheme>
       </AppThemeProvider>
     </>
