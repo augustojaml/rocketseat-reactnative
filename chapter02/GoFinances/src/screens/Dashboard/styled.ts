@@ -1,8 +1,9 @@
-import { Image, Text } from 'react-native';
+import { FlatListProps, Image, Text } from 'react-native';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import { Feather } from '@expo/vector-icons';
 import styled from 'styled-components/native';
-import { BorderlessButton } from 'react-native-gesture-handler';
+import { BorderlessButton, FlatList } from 'react-native-gesture-handler';
+import { ITransaction } from '../../global/components/TransactionDetail';
 
 export const Container = styled.View`
   flex: 1;
@@ -65,8 +66,8 @@ export const CardScrollView = styled.ScrollView.attrs({
 `;
 
 export const FlatListContainer = styled.View`
-  width: 100%;
-  padding: 30px 20px 20px 20px;
+  flex: 1;
+  padding: 30px 20px 0 20px;
 `;
 
 export const ListTitle = styled.Text`
@@ -75,3 +76,12 @@ export const ListTitle = styled.Text`
   font-size: ${RFValue(18)}px;
   margin-bottom: 10px;
 `;
+
+export const TransactionDetailFlatList = styled(
+  FlatList as unknown as new (
+    props: FlatListProps<ITransaction>
+  ) => FlatList<ITransaction>
+).attrs({
+  showsVerticalScrollIndicator: false,
+  contentContainerStyle: { paddingBottom: 10 },
+})``;

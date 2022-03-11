@@ -7,9 +7,15 @@ import AppleSVG from '../../assets/apple.svg';
 
 import { SocialButton } from '../../global/components/SocialButton';
 
-import { Container, Header, SocialContainer, SocialWrapper, Title } from './styled';
-import { StatusBar } from 'expo-status-bar';
+import {
+  Container,
+  Header,
+  SocialContainer,
+  SocialWrapper,
+  Title,
+} from './styled';
 import { useNavigation } from '@react-navigation/native';
+import { StatusBar } from 'expo-status-bar';
 
 export function SignIn() {
   const navigation = useNavigation();
@@ -28,8 +34,16 @@ export function SignIn() {
         </Header>
         <SocialContainer>
           <SocialWrapper>
-            <SocialButton svg={GoogleSVG} title="Entrar com Google" onPress={handleNavigateToDashboard} />
-            <SocialButton svg={AppleSVG} title="Entrar com Apple" onPress={handleNavigateToDashboard} />
+            <SocialButton
+              svg={GoogleSVG}
+              title="Entrar com Google"
+              onPress={handleNavigateToDashboard}
+            />
+            <SocialButton
+              svg={AppleSVG}
+              title="Entrar com Apple"
+              onPress={handleNavigateToDashboard}
+            />
           </SocialWrapper>
         </SocialContainer>
       </Container>

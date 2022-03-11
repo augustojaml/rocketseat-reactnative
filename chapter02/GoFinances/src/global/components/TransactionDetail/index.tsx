@@ -10,17 +10,35 @@ import {
   TransactionDate,
 } from './styled';
 
-export default function TransactionDetail() {
+export interface ITransaction {
+  id: string;
+  type: 'positive' | 'negative';
+  name: string;
+  amount: string;
+  category: string;
+  date: string;
+}
+
+interface ITransactionDetailProps {
+  transaction: ITransaction;
+}
+
+export default function TransactionDetail({
+  transaction,
+}: ITransactionDetailProps) {
   return (
     <Container>
-      <TransactionTitle>Desenvolvimento de site</TransactionTitle>
-      <TransactionAmount>R$ 12.000,00</TransactionAmount>
+      <TransactionTitle>{transaction.name}</TransactionTitle>
+      <TransactionAmount type={transaction.type}>
+        {transaction.type === 'negative' && '- '}
+        {transaction.amount}
+      </TransactionAmount>
       <Footer>
         <TransactionCategory>
           <Icon name="dollar-sign" />
-          <Name>Venda</Name>
+          <Name>{transaction.category}</Name>
         </TransactionCategory>
-        <TransactionDate>10/04/2020</TransactionDate>
+        <TransactionDate>{transaction.date}</TransactionDate>
       </Footer>
     </Container>
   );

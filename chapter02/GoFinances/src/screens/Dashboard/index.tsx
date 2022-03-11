@@ -16,14 +16,63 @@ import {
   CardScrollView,
   FlatListContainer,
   ListTitle,
+  TransactionDetailFlatList,
 } from './styled';
 import { CardInfo } from '../../global/components/CardInfo';
 import { cardInfos } from '../../global/utils/cardInfos';
-import TransactionDetail from '../../global/components/TransactionDetail';
+import TransactionDetail, {
+  ITransaction,
+} from '../../global/components/TransactionDetail';
+import { StatusBar } from 'expo-status-bar';
+
+/**
+  id: string;
+  type: 'positive' | 'negative';
+  name: string;
+  amount: string;
+  category: string;
+  date: string;
+ */
+
+const tempTransactions: ITransaction[] = [
+  {
+    id: '01',
+    type: 'positive',
+    name: 'Desenvolvimento de site',
+    amount: 'R$ 5000.00',
+    category: 'work',
+    date: '10/04/2021',
+  },
+  {
+    id: '02',
+    type: 'negative',
+    name: 'Pizza',
+    amount: 'R$ 50,00',
+    category: 'food',
+    date: '11/04/2022',
+  },
+  {
+    id: '03',
+    type: 'negative',
+    name: 'Academia',
+    amount: 'R$ 60,00',
+    category: 'corpo e saúde',
+    date: '11/04/2022',
+  },
+  {
+    id: '04',
+    type: 'negative',
+    name: 'Academia',
+    amount: 'R$ 60,00',
+    category: 'corpo e saúde',
+    date: '11/04/2022',
+  },
+];
 
 export function Dashboard() {
   return (
     <>
+      <StatusBar style="light" />
       <Container>
         <Header height={250} justifyContent="flex-start">
           <Wrapper>
@@ -51,10 +100,11 @@ export function Dashboard() {
 
         <FlatListContainer>
           <ListTitle>Transações</ListTitle>
-
-          <TransactionDetail />
-          <TransactionDetail />
-          <TransactionDetail />
+          <TransactionDetailFlatList
+            data={tempTransactions}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => <TransactionDetail transaction={item} />}
+          />
         </FlatListContainer>
       </Container>
     </>
