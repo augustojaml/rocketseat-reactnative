@@ -1,11 +1,12 @@
 import { Image, Text } from 'react-native';
-import { RFValue } from 'react-native-responsive-fontsize';
+import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import { Feather } from '@expo/vector-icons';
 import styled from 'styled-components/native';
 import { BorderlessButton } from 'react-native-gesture-handler';
 
 export const Container = styled.View`
   flex: 1;
+  background-color: ${({ theme }) => theme.colors.background};
 `;
 
 export const Wrapper = styled.View`
@@ -13,6 +14,7 @@ export const Wrapper = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  margin-top: ${RFPercentage(8)}px;
 `;
 
 export const User = styled.View`
@@ -47,4 +49,29 @@ export const IconBorderlessButton = styled(BorderlessButton)``;
 export const Icon = styled(Feather)`
   color: ${({ theme }) => theme.colors.attention};
   font-size: ${RFValue(24)}px;
+`;
+
+export const ScrollViewContainer = styled.View`
+  width: 100%;
+  margin-top: ${RFPercentage(-10)}px;
+`;
+
+export const CardScrollView = styled.ScrollView.attrs({
+  horizontal: true,
+  showsHorizontalScrollIndicator: false,
+  contentContainerStyle: { paddingHorizontal: 20 },
+})`
+  width: 100%;
+`;
+
+export const FlatListContainer = styled.View`
+  width: 100%;
+  padding: 30px 20px 20px 20px;
+`;
+
+export const ListTitle = styled.Text`
+  color: ${({ theme }) => theme.colors.text_secondary};
+  font-family: ${({ theme }) => theme.fonts.regular};
+  font-size: ${RFValue(18)}px;
+  margin-bottom: 10px;
 `;

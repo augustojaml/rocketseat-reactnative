@@ -2,7 +2,7 @@
 tags: [reactnative]
 title: Packages
 created: '2022-02-26T03:09:58.393Z'
-modified: '2022-03-02T16:07:19.442Z'
+modified: '2022-03-09T17:09:07.335Z'
 ---
 
 # Packages
@@ -47,3 +47,34 @@ yarn add react-native-responsive-fontsize
 ```bash
 yarn add react-native-iphone-x-helper
 ```
+
+#### [Expo Status Bar](https://docs.expo.dev/versions/latest/sdk/status-bar/)
+```bash
+expo install expo-status-bar
+```
+
+#### [React Hook Form](https://react-hook-form.com/)
+```bash
+yarn add react-hook-form
+```
+
+#### [Schema Validation]
+```bash
+yarn add @hookform/resolvers yup
+```
+
+#### [React Navigation](https://reactnavigation.org/docs/getting-started/)
+```bash
+yarn add @react-navigation/native
+```
+
+```bash
+expo install react-native-screens react-native-safe-area-context
+```
+
+```bash
+yarn add @react-navigation/bottom-tabs
+```
+
+
+

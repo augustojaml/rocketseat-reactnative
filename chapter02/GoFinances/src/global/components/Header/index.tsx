@@ -4,12 +4,20 @@ import { Container } from './styled';
 
 interface IHeader {
   children: ReactNode;
+  height?: number;
+  justifyContent?: string;
 }
 
-export function Header({ children }: IHeader) {
+export function Header({
+  height = 130,
+  justifyContent = 'flex-end',
+  children,
+}: IHeader) {
   return (
     <>
-      <Container>{children}</Container>
+      <Container justifyContent={justifyContent} height={height}>
+        {children}
+      </Container>
     </>
   );
 }
