@@ -2,7 +2,7 @@
 tags: [reactnative]
 title: Packages
 created: '2022-02-26T03:09:58.393Z'
-modified: '2022-03-09T17:09:07.335Z'
+modified: '2022-03-12T03:40:54.318Z'
 ---
 
 # Packages
@@ -75,6 +75,45 @@ expo install react-native-screens react-native-safe-area-context
 ```bash
 yarn add @react-navigation/bottom-tabs
 ```
+
+#### [Victory](https://formidable.com/open-source/victory/docs/native)
+```bash
+yarn add victory-native
+```
+
+#### [Authentication With Google](https://docs.expo.dev/guides/authentication/#google)
+
+- Acesse => [Console Cloud Google](https://console.cloud.google.com/apis/credentials?pli=1)
+- Crie um novo projeto -> (nome do projeto) -> criar
+- Tela de permissão OAuth -> Externo -> Criar
+- Preencha o `nome do app` -> Dados de Contato do Desenvolvedor `Endereço de e-mail`
+- Adicione novo escopop -> selecione `auth/userinfo.email` e `auth/userinfo.profile` -> atualizar -> salvar e continuar -> salvar e continuar -> voltar para o painel
+- Tela de permissão OAuth e clique em publicar aplicativo -> confirmar
+- Acesse credenciais -> criar credenciais -> selecione id do cliente oauth -> Selecione Aplicativo da web -> newgofinance -> acione URIS autorizados -> Origens Javascript autorizadas -> adicionar uri `https://auth.expo.io` | Adicionar uris de 
+- Open `https://expo.dev/accounts/augustojaml/settings/members` e pegue Account owner login
+- Update app.json
+```json
+{
+  "expo": {
+    "name": "GoFinances",
+    "slug": "GoFinances",
+    "schema":"GoFinances",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
+```
+- URIs de redirecionamento autorizados -> `https://auth.expo.io/@augustojaml/GoFinances`
+- [Documentação](https://developers.google.com/identity/protocols/oauth2/javascript-implicit-flow?hl=en#oauth-2.0-endpoints_1)
+
+
+[Babel Plugin Inline Dotenv](babel-plugin-inline-dotenv)
+```bash
+yarn add babel-plugin-inline-dotenv
+```
+
 
 
 

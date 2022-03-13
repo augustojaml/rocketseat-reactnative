@@ -1,38 +1,39 @@
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
 import {
   Alert,
-  Modal,
   Keyboard,
-  TouchableWithoutFeedback,
   KeyboardAvoidingView,
+  Modal,
+  TouchableWithoutFeedback,
 } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-
-import { Control, Controller, useForm } from 'react-hook-form';
+import uuid from 'react-native-uuid';
 import * as YUP from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
-
 import { Button } from '../../global/components/Button';
 import { CategorySelectButton } from '../../global/components/CategorySelectButton';
 import { Header } from '../../global/components/Header';
 import { TextInput } from '../../global/components/TextInput';
 import { TransactionTypeButton } from '../../global/components/TransactionTypeButton';
 import { categories, ICategory } from '../../global/utils/categories';
+import { useTransaction } from '../../hooks/useTransaction';
 import {
-  Container,
-  ScreenTitle,
-  FormContainer,
-  FormInputText,
-  FormFooter,
-  TransactionTypeContainer,
-  ModalTitle,
   CategoryFlatList,
-  CategoryModalIcon,
   CategoryModalContainer,
+  CategoryModalIcon,
   CategoryModalTitle,
-  SeparatorModal,
+  Container,
   FooterModal,
+  FormContainer,
+  FormFooter,
+  FormInputText,
+  ModalTitle,
+  ScreenTitle,
+  SeparatorModal,
+  TransactionTypeContainer,
 } from './styled';
 
 const schema = YUP.object().shape({
@@ -48,6 +49,9 @@ interface IForm {
 }
 
 export function RegisterTransaction() {
+  const navigation = useNavigation();
+  const { saveTransaction } = useTransaction();
+
   const {
     control,
     handleSubmit,
@@ -57,9 +61,9 @@ export function RegisterTransaction() {
     resolver: yupResolver(schema),
   });
 
-  const [transactionType, setTransactionType] = useState<'up' | 'down' | ''>(
-    ''
-  );
+  const [transactionType, setTransactionType] = useState<
+    'positive' | 'negative'
+  >();
 
   const [category, setCategory] = useState<ICategory>({
     key: 'category',
@@ -68,7 +72,7 @@ export function RegisterTransaction() {
 
   const [showModal, setShowModal] = useState(false);
 
-  function handleTransactionType(type: 'up' | 'down' | '') {
+  function handleTransactionType(type: 'positive' | 'negative') {
     setTransactionType(type);
   }
 
@@ -88,11 +92,11 @@ export function RegisterTransaction() {
       key: 'category',
       name: 'Categoria',
     });
-    setTransactionType('');
+    setTransactionType(undefined);
     reset();
   }
 
-  function handleSaveTransaction(form: IForm) {
+  async function handleSaveTransaction(form: IForm) {
     if (!transactionType) {
       return Alert.alert('Selecione o tipo da transação');
     }
@@ -102,25 +106,29 @@ export function RegisterTransaction() {
     }
 
     const data = {
+      id: String(uuid.v4()),
       name: form.name,
       amount: form.amount,
-      transactionType,
+      type: transactionType,
       category: category.key,
+      date: new Date(),
     };
 
-    console.log(data);
+    await saveTransaction(data);
     clearForm();
+    navigation.navigate('Dashboard');
   }
 
   return (
     <>
       <StatusBar style="light" />
-      <KeyboardAvoidingView style={{ flex: 1 }}>
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <Container>
-            <Header>
-              <ScreenTitle>Cadastrar</ScreenTitle>
-            </Header>
+
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <Container>
+          <Header>
+            <ScreenTitle>Cadastrar</ScreenTitle>
+          </Header>
+          <KeyboardAvoidingView behavior="height" style={{ flex: 1 }}>
             <FormContainer>
               <FormInputText>
                 <Controller
@@ -157,15 +165,15 @@ export function RegisterTransaction() {
                     title="Entrada"
                     icon="arrow-up-circle"
                     type="up"
-                    onPress={() => handleTransactionType('up')}
-                    isActive={transactionType === 'up'}
+                    onPress={() => handleTransactionType('positive')}
+                    isActive={transactionType === 'positive'}
                   />
                   <TransactionTypeButton
                     title="Saida"
                     icon="arrow-down-circle"
                     type="down"
-                    onPress={() => handleTransactionType('down')}
-                    isActive={transactionType === 'down'}
+                    onPress={() => handleTransactionType('negative')}
+                    isActive={transactionType === 'negative'}
                   />
                 </TransactionTypeContainer>
 
@@ -181,50 +189,51 @@ export function RegisterTransaction() {
                 />
               </FormFooter>
             </FormContainer>
-          </Container>
-        </TouchableWithoutFeedback>
-        <Modal visible={showModal}>
-          <GestureHandlerRootView style={{ flex: 1 }}>
-            <Header
-              height={80}
-              flexDirection="row"
-              justifyContent="center"
-              alignItems="flex-end"
-            >
-              <ModalTitle>Selecione uma categoria</ModalTitle>
-            </Header>
-            <CategoryFlatList
-              data={categories}
-              keyExtractor={(item) => item.key}
-              ItemSeparatorComponent={SeparatorModal}
-              renderItem={({ item }) => (
-                <>
-                  <CategoryModalContainer
+          </KeyboardAvoidingView>
+        </Container>
+      </TouchableWithoutFeedback>
+
+      <Modal visible={showModal}>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <Header
+            height={80}
+            flexDirection="row"
+            justifyContent="center"
+            alignItems="flex-end"
+          >
+            <ModalTitle>Selecione uma categoria</ModalTitle>
+          </Header>
+          <CategoryFlatList
+            data={categories}
+            keyExtractor={(item) => item.key}
+            ItemSeparatorComponent={SeparatorModal}
+            renderItem={({ item }) => (
+              <>
+                <CategoryModalContainer
+                  color={item.color}
+                  onPress={() => handleSelectCategory(item)}
+                  active={category.key === item.key}
+                >
+                  <CategoryModalIcon
                     color={item.color}
-                    onPress={() => handleSelectCategory(item)}
+                    name={item.icon}
+                    active={category.key === item.key}
+                  />
+                  <CategoryModalTitle
+                    color={item.color}
                     active={category.key === item.key}
                   >
-                    <CategoryModalIcon
-                      color={item.color}
-                      name={item.icon}
-                      active={category.key === item.key}
-                    />
-                    <CategoryModalTitle
-                      color={item.color}
-                      active={category.key === item.key}
-                    >
-                      {item.name}
-                    </CategoryModalTitle>
-                  </CategoryModalContainer>
-                </>
-              )}
-            />
-            <FooterModal>
-              <Button title="Seleciona" onPress={handleToggleModal} />
-            </FooterModal>
-          </GestureHandlerRootView>
-        </Modal>
-      </KeyboardAvoidingView>
+                    {item.name}
+                  </CategoryModalTitle>
+                </CategoryModalContainer>
+              </>
+            )}
+          />
+          <FooterModal>
+            <Button title="Seleciona" onPress={handleToggleModal} />
+          </FooterModal>
+        </GestureHandlerRootView>
+      </Modal>
     </>
   );
 }

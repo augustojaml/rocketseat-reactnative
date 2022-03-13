@@ -8,8 +8,7 @@ interface Props {
 
 export const Container = styled.View<Props>`
   width: ${RFValue(300)}px;
-  background: ${({ theme, type }) =>
-    type === 'total' ? theme.colors.secondary : theme.colors.shape};
+  background: ${({ theme, type }) => (type === 'total' ? theme.colors.secondary : theme.colors.shape)};
   border-radius: 8px;
   padding: 20px;
   margin-right: 20px;
@@ -23,8 +22,7 @@ export const Header = styled.View`
 export const Transaction = styled.Text<Props>`
   font-family: ${({ theme }) => theme.fonts.regular};
   font-size: ${RFValue(14)}px;
-  color: ${({ theme, type }) =>
-    type === 'total' ? theme.colors.shape : theme.colors.text_secondary};
+  color: ${({ theme, type }) => (type === 'total' ? theme.colors.shape : theme.colors.text_secondary)};
 `;
 
 export const Icon = styled(Feather)<Props>`
@@ -36,7 +34,7 @@ export const Icon = styled(Feather)<Props>`
     `}
 
   ${({ type, theme }) =>
-    type === 'up' &&
+    type === 'down' &&
     css`
       color: ${theme.colors.attention};
     `}
@@ -55,14 +53,12 @@ export const Content = styled.View`
 export const Amount = styled.Text<Props>`
   font-family: ${({ theme }) => theme.fonts.medium};
   font-size: ${RFValue(32)}px;
-  color: ${({ theme, type }) =>
-    type === 'total' ? theme.colors.shape : theme.colors.text_secondary};
+  color: ${({ theme, type }) => (type === 'total' ? theme.colors.shape : theme.colors.text_secondary)};
 `;
 
 export const LastTransaction = styled.Text<Props>`
   font-family: ${({ theme }) => theme.fonts.regular};
   font-size: ${RFValue(12)}px;
-  color: ${({ theme, type }) =>
-    type === 'total' ? theme.colors.shape : theme.colors.text};
+  color: ${({ theme, type }) => (type === 'total' ? theme.colors.shape : theme.colors.text)};
   margin-top: ${({ theme }) => (theme.theme === 'dark' ? 0 : -15)}px;
 `;

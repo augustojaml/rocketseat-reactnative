@@ -1,20 +1,20 @@
 import React from 'react';
-
 import {
-  Container,
-  Header,
-  Transaction,
-  Icon,
-  Content,
   Amount,
+  Container,
+  Content,
+  Header,
+  Icon,
   LastTransaction,
+  Transaction,
 } from './styled';
 
 export interface ICardInfo {
-  id: number;
+  id?: number;
   title: string;
   type: 'up' | 'down' | 'total';
   icon: 'arrow-up-circle' | 'arrow-down-circle' | 'dollar-sign';
+  amount?: string;
 }
 
 interface ComponentProps {
@@ -29,7 +29,7 @@ export function CardInfo({ cardInfo }: ComponentProps) {
         <Icon name={cardInfo.icon} type={cardInfo.type} />
       </Header>
       <Content>
-        <Amount type={cardInfo.type}>R$ 17.400,00</Amount>
+        <Amount type={cardInfo.type}>{cardInfo.amount}</Amount>
         <LastTransaction type={cardInfo.type}>
           Última entrada dia 13 de abril
         </LastTransaction>

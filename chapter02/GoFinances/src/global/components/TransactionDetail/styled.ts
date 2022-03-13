@@ -1,6 +1,6 @@
-import styled from 'styled-components/native';
 import { Feather } from '@expo/vector-icons';
 import { RFValue } from 'react-native-responsive-fontsize';
+import styled from 'styled-components/native';
 
 interface Props {
   type?: 'positive' | 'negative';
@@ -21,7 +21,7 @@ export const TransactionTitle = styled.Text`
 
 export const TransactionAmount = styled.Text<Props>`
   color: ${({ theme, type }) =>
-    type === 'positive' ? theme.colors.text_secondary : theme.colors.attention};
+    type === 'positive' ? theme.colors.success : theme.colors.attention};
   font-family: ${({ theme }) => theme.fonts.medium};
   font-size: ${RFValue(20)}px;
 `;

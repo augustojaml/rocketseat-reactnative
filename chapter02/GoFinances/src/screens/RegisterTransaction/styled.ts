@@ -1,10 +1,10 @@
+import { Feather } from '@expo/vector-icons';
+import { rgba } from 'polished';
+import { FlatList, FlatListProps } from 'react-native';
+import { RectButton } from 'react-native-gesture-handler';
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
-import { Feather } from '@expo/vector-icons';
-import { BorderlessButton, RectButton } from 'react-native-gesture-handler';
-import { FlatList, FlatListProps } from 'react-native';
 import { ICategory } from '../../global/utils/categories';
-import { rgba } from 'polished';
 
 export const Container = styled.View`
   flex: 1;

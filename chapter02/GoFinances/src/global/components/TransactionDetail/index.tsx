@@ -1,31 +1,28 @@
 import React from 'react';
+import { ITransactionDetail } from '../../../hooks/useTransaction';
+import { categories } from '../../utils/categories';
 import {
   Container,
-  TransactionTitle,
-  TransactionAmount,
   Footer,
-  TransactionCategory,
   Icon,
   Name,
+  TransactionAmount,
+  TransactionCategory,
   TransactionDate,
+  TransactionTitle,
 } from './styled';
 
-export interface ITransaction {
-  id: string;
-  type: 'positive' | 'negative';
-  name: string;
-  amount: string;
-  category: string;
-  date: string;
-}
-
 interface ITransactionDetailProps {
-  transaction: ITransaction;
+  transaction: ITransactionDetail;
 }
 
 export default function TransactionDetail({
   transaction,
 }: ITransactionDetailProps) {
+  const category = categories.filter(
+    (item) => item.key === transaction.category
+  )[0];
+
   return (
     <Container>
       <TransactionTitle>{transaction.name}</TransactionTitle>
@@ -36,7 +33,7 @@ export default function TransactionDetail({
       <Footer>
         <TransactionCategory>
           <Icon name="dollar-sign" />
-          <Name>{transaction.category}</Name>
+          <Name>{category.name}</Name>
         </TransactionCategory>
         <TransactionDate>{transaction.date}</TransactionDate>
       </Footer>

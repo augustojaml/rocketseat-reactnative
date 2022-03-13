@@ -1,9 +1,9 @@
-import { FlatListProps, Image, Text } from 'react-native';
-import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import { Feather } from '@expo/vector-icons';
-import styled from 'styled-components/native';
+import { FlatListProps, Image } from 'react-native';
 import { BorderlessButton, FlatList } from 'react-native-gesture-handler';
-import { ITransaction } from '../../global/components/TransactionDetail';
+import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
+import styled from 'styled-components/native';
+import { ITransactionDetail } from '../../hooks/useTransaction';
 
 export const Container = styled.View`
   flex: 1;
@@ -77,10 +77,18 @@ export const ListTitle = styled.Text`
   margin-bottom: 10px;
 `;
 
+export const ListTitleFeedBack = styled.Text`
+  color: ${({ theme }) => theme.colors.attention};
+  font-family: ${({ theme }) => theme.fonts.regular};
+  font-size: ${RFValue(18)}px;
+  text-align: center;
+  margin-bottom: 10px;
+`;
+
 export const TransactionDetailFlatList = styled(
   FlatList as unknown as new (
-    props: FlatListProps<ITransaction>
-  ) => FlatList<ITransaction>
+    props: FlatListProps<ITransactionDetail>
+  ) => FlatList<ITransactionDetail>
 ).attrs({
   showsVerticalScrollIndicator: false,
   contentContainerStyle: { paddingBottom: 10 },
