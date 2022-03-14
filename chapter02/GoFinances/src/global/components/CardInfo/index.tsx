@@ -15,6 +15,7 @@ export interface ICardInfo {
   type: 'up' | 'down' | 'total';
   icon: 'arrow-up-circle' | 'arrow-down-circle' | 'dollar-sign';
   amount?: string;
+  lastTransaction?: string | null | undefined;
 }
 
 interface ComponentProps {
@@ -31,7 +32,7 @@ export function CardInfo({ cardInfo }: ComponentProps) {
       <Content>
         <Amount type={cardInfo.type}>{cardInfo.amount}</Amount>
         <LastTransaction type={cardInfo.type}>
-          Última entrada dia 13 de abril
+          {cardInfo.lastTransaction}
         </LastTransaction>
       </Content>
     </Container>

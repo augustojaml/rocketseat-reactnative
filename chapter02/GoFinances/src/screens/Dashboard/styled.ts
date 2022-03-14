@@ -45,11 +45,16 @@ export const Name = styled.Text`
   margin-top: -7px;
 `;
 
+export const HeaderButtonContainer = styled.View`
+  flex-direction: row;
+`;
+
 export const IconBorderlessButton = styled(BorderlessButton)``;
 
 export const Icon = styled(Feather)`
   color: ${({ theme }) => theme.colors.attention};
   font-size: ${RFValue(24)}px;
+  margin-right: 5px;
 `;
 
 export const ScrollViewContainer = styled.View`

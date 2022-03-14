@@ -37,6 +37,10 @@ interface ITotals {
   positive: string;
   negative: string;
   total: string;
+  lastTransactionPositive: string | null;
+  lastTransactionNegative: string | null;
+  firstTransaction: string | null | null;
+  lastTransaction: string | null | null;
 }
 
 export interface IGraphicData {
@@ -119,6 +123,56 @@ function TransactionProvider({ children }: ITransactionProvider) {
     setIsLoading(false);
   }
 
+  function getLastTransaction(
+    type: 'positive' | 'negative' | 'first' | 'last',
+    transactions: ITransaction[]
+  ) {
+    if (transactions.length === 0) {
+      return null;
+    }
+
+    if (transactions.length === 1) {
+      FormatValue.dateLongYear(new Date(transactions[0].date));
+    }
+
+    if (type === 'first') {
+      const lastTransactions = new Date(
+        Math.min.apply(
+          Math,
+          transactions.map((transaction) =>
+            new Date(transaction.date).getTime()
+          )
+        )
+      );
+
+      return FormatValue.dateFullYear(lastTransactions);
+    }
+
+    if (type === 'last') {
+      const lastTransactions = new Date(
+        Math.max.apply(
+          Math,
+          transactions.map((transaction) =>
+            new Date(transaction.date).getTime()
+          )
+        )
+      );
+
+      return FormatValue.dateFullYear(lastTransactions);
+    }
+
+    const lastTransactions = new Date(
+      Math.max.apply(
+        Math,
+        transactions
+          .filter((transaction) => transaction.type === type)
+          .map((transaction) => new Date(transaction.date).getTime())
+      )
+    );
+
+    return FormatValue.dateFullYear(lastTransactions);
+  }
+
   async function loadingTransactions() {
     setIsLoading(false);
     const data = await TransactionStorage.getData();
@@ -142,7 +196,7 @@ function TransactionProvider({ children }: ITransactionProvider) {
           amount: FormatValue.currency(transaction.amount),
           type: transaction.type,
           category: transaction.category,
-          date: FormatValue.DateFullYear(transaction.date),
+          date: FormatValue.dateFullYear(transaction.date),
         };
       }
     );
@@ -150,6 +204,10 @@ function TransactionProvider({ children }: ITransactionProvider) {
       positive: FormatValue.currency(String(positive)),
       negative: FormatValue.currency(String(negative)),
       total: FormatValue.currency(String(positive - negative)),
+      lastTransactionPositive: getLastTransaction('positive', data),
+      lastTransactionNegative: getLastTransaction('negative', data),
+      firstTransaction: getLastTransaction('first', data),
+      lastTransaction: getLastTransaction('last', data),
     });
     setTransactionDetail(formattedTransaction);
     setIsLoading(false);

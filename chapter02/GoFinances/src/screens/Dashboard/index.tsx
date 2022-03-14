@@ -5,6 +5,7 @@ import { useTheme } from 'styled-components';
 import { ActivityIndicator } from '../../global/components/ActivityIndicator';
 import { CardInfo } from '../../global/components/CardInfo';
 import { Header } from '../../global/components/Header';
+import { ToggleTheme } from '../../global/components/ToggleTheme';
 import TransactionDetail from '../../global/components/TransactionDetail';
 import { useAuth } from '../../hooks/useAuth';
 import { useTransaction } from '../../hooks/useTransaction';
@@ -13,6 +14,7 @@ import {
   Container,
   FlatListContainer,
   Greeting,
+  HeaderButtonContainer,
   Icon,
   IconBorderlessButton,
   ListTitle,
@@ -54,9 +56,12 @@ export function Dashboard() {
                 <Name>{user?.name}</Name>
               </UserInfo>
             </User>
-            <IconBorderlessButton onPress={signOut}>
-              <Icon name="power" />
-            </IconBorderlessButton>
+            <HeaderButtonContainer>
+              <IconBorderlessButton onPress={signOut}>
+                <Icon name="power" />
+              </IconBorderlessButton>
+              <ToggleTheme />
+            </HeaderButtonContainer>
           </Wrapper>
         </Header>
         <ScrollViewContainer>
@@ -68,6 +73,8 @@ export function Dashboard() {
                 type: 'up',
                 icon: 'arrow-up-circle',
                 amount: totals?.positive,
+                lastTransaction:
+                  'Última entrada dia ' + totals?.lastTransactionPositive,
               }}
             />
             <CardInfo
@@ -77,6 +84,8 @@ export function Dashboard() {
                 type: 'down',
                 icon: 'arrow-down-circle',
                 amount: totals?.negative,
+                lastTransaction:
+                  'Última saída dia ' + totals?.lastTransactionNegative,
               }}
             />
             <CardInfo
@@ -86,6 +95,7 @@ export function Dashboard() {
                 type: 'total',
                 icon: 'dollar-sign',
                 amount: totals?.total,
+                lastTransaction: `De ${totals?.firstTransaction} à ${totals?.lastTransaction}`,
               }}
             />
           </CardScrollView>
