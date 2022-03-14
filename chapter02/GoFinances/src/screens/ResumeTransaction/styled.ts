@@ -3,7 +3,7 @@ import { Dimensions, FlatList, FlatListProps } from 'react-native';
 import { BorderlessButton } from 'react-native-gesture-handler';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
-import { ICategory } from '../../global/utils/categories';
+import { IGraphicData } from './../../hooks/useTransaction';
 
 export interface Props {
   color?: string;
@@ -55,8 +55,8 @@ export const VictoryPieContainer = styled.View`
 
 export const CategoryFlatList = styled(
   FlatList as unknown as new (
-    props: FlatListProps<ICategory>
-  ) => FlatList<ICategory>
+    props: FlatListProps<IGraphicData>
+  ) => FlatList<IGraphicData>
 ).attrs({
   showsVerticalScrollIndicator: false,
   contentContainerStyle: { paddingBottom: 10 },

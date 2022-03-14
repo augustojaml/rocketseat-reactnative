@@ -1,10 +1,11 @@
+import { useFocusEffect } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
-import React, { useEffect } from 'react';
+import React, { useCallback } from 'react';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import { useTheme } from 'styled-components';
 import { VictoryPie } from 'victory-native';
+import { ActivityIndicator } from '../../global/components/ActivityIndicator';
 import { Header } from '../../global/components/Header';
-import { categories } from '../../global/utils/categories';
 import { useTransaction } from '../../hooks/useTransaction';
 import {
   CategoryFlatList,
@@ -23,11 +24,23 @@ import {
 
 export function ResumeTransaction() {
   const theme = useTheme();
-  const { transactions } = useTransaction();
+  const {
+    graphicsData,
+    isLoading,
+    previousDate,
+    nextDate,
+    currentCalendar,
+    loadingGraphic,
+  } = useTransaction();
 
-  useEffect(() => {
-    // console.log(transactions);
-  });
+  useFocusEffect(
+    useCallback(() => {
+      const loadingData = async () => {
+        await loadingGraphic();
+      };
+      loadingData();
+    }, [])
+  );
 
   return (
     <>
@@ -36,49 +49,59 @@ export function ResumeTransaction() {
         <Header>
           <ScreenTitle>Resumo por Categorias</ScreenTitle>
         </Header>
+
         <GraphicContainer>
           <ChangeMonthContainer>
-            <MonthSelectButton>
+            <MonthSelectButton onPress={previousDate}>
               <Icon name="chevron-left" />
             </MonthSelectButton>
-            <MonthTitle>Maio, 2022</MonthTitle>
-            <MonthSelectButton>
+            <MonthTitle>{currentCalendar}</MonthTitle>
+            <MonthSelectButton onPress={nextDate}>
               <Icon name="chevron-right" />
             </MonthSelectButton>
           </ChangeMonthContainer>
 
-          <VictoryPieContainer>
-            <VictoryPie
-              data={[
-                { x: '35%', y: 35 },
-                { x: '40%', y: 40 },
-                { x: '55%', y: 55 },
-              ]}
-              colorScale={['#5636D3', '#FF872C', '#26195C']}
-              width={RFPercentage(100)}
-              style={{
-                labels: {
-                  fontSize: RFValue(18),
-                  fontWeight: 'bold',
-                  fill: theme.colors.shape,
-                },
-              }}
-              labelRadius={50}
-            />
-          </VictoryPieContainer>
+          {isLoading ? (
+            <ActivityIndicator color={theme.colors.text} />
+          ) : (
+            <>
+              <VictoryPieContainer>
+                <VictoryPie
+                  data={graphicsData}
+                  x="percent"
+                  y="totalCategory"
+                  // @ts-ignore: Object is possibly 'null'
+                  colorScale={
+                    graphicsData && graphicsData.map((item) => item.color)
+                  }
+                  width={RFPercentage(100)}
+                  style={{
+                    labels: {
+                      fontSize: RFValue(18),
+                      fontWeight: 'bold',
+                      fill: theme.colors.shape,
+                    },
+                  }}
+                  labelRadius={50}
+                />
+              </VictoryPieContainer>
 
-          <CategoryFlatList
-            data={categories}
-            keyExtractor={(item) => item.key}
-            renderItem={({ item }) => (
-              <>
-                <CategoryItem color={item.color}>
-                  <CategoryItemTitle>{item.name}</CategoryItemTitle>
-                  <CategoryItemAmount>R$ 1200.00</CategoryItemAmount>
-                </CategoryItem>
-              </>
-            )}
-          />
+              <CategoryFlatList
+                data={graphicsData}
+                keyExtractor={(item) => item.category}
+                renderItem={({ item }) => (
+                  <>
+                    <CategoryItem color={item.color}>
+                      <CategoryItemTitle>{item.category}</CategoryItemTitle>
+                      <CategoryItemAmount>
+                        {item.totalCategoryFormatted}
+                      </CategoryItemAmount>
+                    </CategoryItem>
+                  </>
+                )}
+              />
+            </>
+          )}
         </GraphicContainer>
       </Container>
     </>
