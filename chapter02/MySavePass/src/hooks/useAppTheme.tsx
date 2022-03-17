@@ -18,14 +18,10 @@ interface IAppTheme {
 const AppThemeContext = createContext({} as IAppThemeContext);
 
 function AppThemeProvider({ children }: IAppThemeProvider) {
-  const [appTheme, setAppTheme] = useState<
-    typeof theme.dark | typeof theme.light
-  >(theme.dark);
+  const [appTheme, setAppTheme] = useState<typeof theme.dark | typeof theme.light>(theme.dark);
 
   function toggleTheme() {
-    appTheme === theme.dark
-      ? setAppTheme(theme.light)
-      : setAppTheme(theme.dark);
+    appTheme === theme.dark ? setAppTheme(theme.light) : setAppTheme(theme.dark);
   }
 
   return (

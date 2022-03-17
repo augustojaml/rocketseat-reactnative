@@ -9,8 +9,11 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@": "react-native-async-storage/async-storage",
     "@expo-google-fonts/montserrat": "^0.2.2",
     "@expo-google-fonts/poppins": "^0.2.2",
+    "@hookform/resolvers": "^2.8.8",
+    "@react-native-async-storage/async-storage": "~1.15.0",
     "@react-navigation/native": "^6.0.8",
     "@react-navigation/native-stack": "^6.5.0",
     "expo": "~44.0.2",
@@ -20,12 +23,16 @@
     "expo-status-bar": "^1.2.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "react-hook-form": "^7.28.0",
     "react-native": "0.64.3",
+    "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-responsive-fontsize": "^0.5.1",
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "~3.10.1",
+    "react-native-uuid": "^2.0.1",
     "react-native-web": "0.17.1",
-    "styled-components": "^5.3.3"
+    "styled-components": "^5.3.3",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

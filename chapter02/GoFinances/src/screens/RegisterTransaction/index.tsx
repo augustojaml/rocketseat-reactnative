@@ -122,13 +122,13 @@ export function RegisterTransaction() {
   return (
     <>
       <StatusBar style="light" />
+      <KeyboardAvoidingView behavior="position" enabled>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <Container>
+            <Header>
+              <ScreenTitle>Cadastrar</ScreenTitle>
+            </Header>
 
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <Container>
-          <Header>
-            <ScreenTitle>Cadastrar</ScreenTitle>
-          </Header>
-          <KeyboardAvoidingView behavior="height" style={{ flex: 1 }}>
             <FormContainer>
               <FormInputText>
                 <Controller
@@ -189,9 +189,9 @@ export function RegisterTransaction() {
                 />
               </FormFooter>
             </FormContainer>
-          </KeyboardAvoidingView>
-        </Container>
-      </TouchableWithoutFeedback>
+          </Container>
+        </TouchableWithoutFeedback>
+      </KeyboardAvoidingView>
 
       <Modal visible={showModal}>
         <GestureHandlerRootView style={{ flex: 1 }}>

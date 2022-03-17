@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 
 export const Container = styled.View`
   width: 100%;
-  background: ${({ theme }) => theme.colors.text_gray};
+  background: ${({ theme }) => theme.colors.background_item};
   flex-direction: row;
   border-radius: 8px;
   overflow: hidden;
@@ -29,7 +29,6 @@ export const IconButton = styled.TouchableOpacity.attrs({
 `;
 
 export const Icon = styled(Feather)`
-  color: ${({ theme }) => theme.colors.text_gray};
+  color: ${({ theme }) => theme.colors.background_item};
   font-size: ${RFValue(20)}px;
-  font-size: ${RFValue(20)}px; ;
 `;

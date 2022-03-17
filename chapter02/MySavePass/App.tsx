@@ -12,7 +12,9 @@ import {
 import AppLoading from 'expo-app-loading';
 import React from 'react';
 import { AppTheme, AppThemeProvider } from './src/hooks/useAppTheme';
-import { AppRoutes } from './src/routes/app.routes';
+import { AuthProvider } from './src/hooks/useAuth';
+import { PassProvider } from './src/hooks/usePass';
+import { Routes } from './src/routes';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -32,7 +34,11 @@ export default function App() {
     <>
       <AppThemeProvider>
         <AppTheme>
-          <AppRoutes />
+          <AuthProvider>
+            <PassProvider>
+              <Routes />
+            </PassProvider>
+          </AuthProvider>
         </AppTheme>
       </AppThemeProvider>
     </>
