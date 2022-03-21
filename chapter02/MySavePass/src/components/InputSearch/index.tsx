@@ -3,16 +3,18 @@ import { TextInputProps } from 'react-native';
 import { useTheme } from 'styled-components';
 import { Container, Icon, IconButton, Input } from './styled';
 
-interface Props extends TextInputProps {}
+interface Props extends TextInputProps {
+  onPress?: () => void;
+}
 
-export function InputSearch({ ...rest }: TextInputProps) {
+export function InputSearch({ onPress, ...rest }: Props) {
   const theme = useTheme();
 
   return (
     <>
       <Container>
         <Input {...rest} placeholderTextColor={theme.colors.text_gray_dark} />
-        <IconButton>
+        <IconButton onPress={onPress}>
           <Icon name="search" />
         </IconButton>
       </Container>

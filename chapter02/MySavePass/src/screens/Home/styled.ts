@@ -46,12 +46,12 @@ export const Info = styled.Text`
   font-size: ${RFValue(12)}px;
 `;
 
-export const Icon = styled(Feather)`
-  color: ${({ theme }) => theme.colors.text_gray};
+export const PowerIcon = styled(Feather)`
+  color: ${({ theme }) => theme.colors.danger};
   font-size: ${RFValue(20)}px;
 `;
 
-export const PlusButton = styled.TouchableOpacity`
+export const PowerButton = styled.TouchableOpacity`
   width: 50px;
   height: 50px;
   border-radius: 8px;
@@ -59,7 +59,7 @@ export const PlusButton = styled.TouchableOpacity`
   justify-content: center;
   border-width: 1px;
   border-style: solid;
-  border-color: ${({ theme }) => theme.colors.text_gray};
+  border-color: ${({ theme }) => theme.colors.danger};
 `;
 
 export const Content = styled.View`
@@ -90,6 +90,23 @@ export const HomeLoading = styled.ActivityIndicator.attrs(({ color, theme, size 
   size: size ? size : 20,
 }))`
   padding: 50px 0;
+`;
+
+export const NewRegister = styled.TouchableOpacity`
+  width: ${RFValue(60)}px;
+  height: ${RFValue(60)}px;
+  border-radius: ${RFValue(30)}px;
+  background: ${({ theme }) => theme.colors.background_tertiary};
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const IconNew = styled(Feather)`
+  color: ${({ theme }) => theme.colors.text_gray};
+  font-size: ${RFValue(30)}px;
 `;
 
 export const CategoryFlatList = styled(

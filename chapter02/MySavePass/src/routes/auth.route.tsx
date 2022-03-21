@@ -12,7 +12,7 @@ export function AuthRoutes() {
           headerShown: false,
         }}
       >
-        <Screen name="Home" component={SignIn} />
+        <Screen name="SignIn" component={SignIn} />
       </Navigator>
     </>
   );

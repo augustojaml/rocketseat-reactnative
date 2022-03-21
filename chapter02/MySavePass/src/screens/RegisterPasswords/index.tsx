@@ -63,8 +63,7 @@ export function RegisterPasswords() {
 
   return (
     <>
-      <StatusBar style="light" />
-
+      <StatusBar style="light" backgroundColor={theme.colors.background_secondary} />
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <Container>
           <Header

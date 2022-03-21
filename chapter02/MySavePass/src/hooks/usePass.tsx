@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
-import { StoragePass } from '../storage/StoragePass';
+import { PassStorage } from '../storage/PassStorage';
 
 interface IPassProvider {
   children: ReactNode;
@@ -27,13 +27,13 @@ function PassProvider({ children }: IPassProvider) {
 
   async function savePass(password: IPassword) {
     setIsLoadingSavePass(true);
-    const store = await StoragePass.setData(password);
+    const store = await PassStorage.setData(password);
     setPassData(store);
     setIsLoadingSavePass(false);
   }
 
   async function loadStorage() {
-    const data = await StoragePass.getData();
+    const data = await PassStorage.getData();
     setPassData(data);
   }
 

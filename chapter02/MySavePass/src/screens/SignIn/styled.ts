@@ -22,7 +22,7 @@ export const HeaderTitle = styled.Text`
 `;
 
 export const Image = styled.Image`
-  margin: 30px;
+  margin-bottom: 30px;
 `;
 
 export const HeaderSubTitle = styled.Text`

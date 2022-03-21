@@ -1,5 +1,6 @@
-import { createContext, ReactNode, useContext, useState } from 'react';
+import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
+import { AppThemeStorage } from '../storage/AppThemeStorage';
 import { theme } from '../styles/theme';
 
 interface IAppThemeProvider {
@@ -8,7 +9,7 @@ interface IAppThemeProvider {
 
 interface IAppThemeContext {
   appTheme: typeof theme.dark | typeof theme.light;
-  toggleTheme: () => void;
+  toggleTheme: () => Promise<void>;
 }
 
 interface IAppTheme {
@@ -20,9 +21,26 @@ const AppThemeContext = createContext({} as IAppThemeContext);
 function AppThemeProvider({ children }: IAppThemeProvider) {
   const [appTheme, setAppTheme] = useState<typeof theme.dark | typeof theme.light>(theme.dark);
 
-  function toggleTheme() {
+  async function toggleTheme() {
     appTheme === theme.dark ? setAppTheme(theme.light) : setAppTheme(theme.dark);
+    await AppThemeStorage.setData(appTheme.theme);
   }
+
+  useEffect(() => {
+    (async () => {
+      const currentTheme = await AppThemeStorage.getData();
+      if (currentTheme === undefined) {
+        setAppTheme(theme.dark);
+        return;
+      }
+
+      if (currentTheme === 'dark') {
+        setAppTheme(theme.light);
+        return;
+      }
+      setAppTheme(theme.dark);
+    })();
+  }, [appTheme]);
 
   return (
     <>
