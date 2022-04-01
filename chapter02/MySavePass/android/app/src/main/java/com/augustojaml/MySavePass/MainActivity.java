@@ -1,4 +1,4 @@
-package com.mysavepass;
+package com.augustojaml.MySavePass;
 
 import android.os.Build;
 import android.os.Bundle;

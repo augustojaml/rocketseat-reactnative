@@ -24,8 +24,6 @@ interface IAuthContext {
   user: IUser | undefined;
 }
 
-const { GOOGLE_CLIENT_ID } = process.env;
-
 const AuthContext = createContext({} as IAuthContext);
 
 function AuthProvider({ children }: IAuthProvider) {
@@ -33,15 +31,13 @@ function AuthProvider({ children }: IAuthProvider) {
   const [user, setUser] = useState<IUser>();
 
   const [request, response, promptAsync] = Google.useAuthRequest({
-    androidClientId: GOOGLE_CLIENT_ID,
-    iosClientId: GOOGLE_CLIENT_ID,
-    expoClientId: GOOGLE_CLIENT_ID,
-    webClientId: GOOGLE_CLIENT_ID,
+    androidClientId: process.env.ANDROID_CLIENT_ID,
+    expoClientId: process.env.WEB_CLIENT_ID,
   });
 
   async function signIn() {
     setIsLoadingLogin(true);
-    await promptAsync({ useProxy: true, showInRecents: true });
+    await promptAsync({ useProxy: false });
     setIsLoadingLogin(false);
   }
 
@@ -55,8 +51,8 @@ function AuthProvider({ children }: IAuthProvider) {
 
   useEffect(() => {
     (async () => {
-      setIsLoadingLogin(true);
       if (response?.type === 'success') {
+        setIsLoadingLogin(true);
         api.defaults.headers.common[
           'Authorization'
         ] = `Bearer ${response.authentication?.accessToken}`;
@@ -68,8 +64,8 @@ function AuthProvider({ children }: IAuthProvider) {
           name: userResponse.data.name,
           picture: userResponse.data.picture,
         });
+        setIsLoadingLogin(false);
       }
-      setIsLoadingLogin(false);
     })();
   }, [response]);
 

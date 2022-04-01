@@ -15,7 +15,11 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/icon_254.png",
         "backgroundColor": "#121214"
-      }
+      },
+      "package": "com.augustojaml.MySavePass"
+    },
+    "ios": {
+      "bundleIdentifier": "com.augustojaml.MySavePass"
     }
   }
 }
