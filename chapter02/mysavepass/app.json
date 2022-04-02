@@ -1,0 +1,22 @@
+{
+  "expo": {
+    "name": "mysavepass",
+    "slug": "mysavepass",
+    "scheme": "mysavepass",
+    "version": "1.0.0",
+    "assetBundlePatterns": ["**/*"],
+    "icon": "./assets/images/icon_64.png",
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#121214"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/icon_64.png",
+        "backgroundColor": "#121214"
+      },
+      "package": "com.mysavepass"
+    }
+  }
+}
