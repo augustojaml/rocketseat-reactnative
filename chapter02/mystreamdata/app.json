@@ -1,0 +1,21 @@
+{
+  "expo": {
+    "name": "mystreamdata",
+    "slug": "mystreamdata",
+    "version": "1.0.0",
+    "assetBundlePatterns": ["**/*"],
+    "icon": "./assets/images/icon.png",
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#9146FF"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/icon.png",
+        "backgroundColor": "#9146FF"
+      },
+      "package": "com.mystreamdata"
+    }
+  }
+}
