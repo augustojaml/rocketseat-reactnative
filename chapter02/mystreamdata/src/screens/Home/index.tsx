@@ -2,7 +2,9 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
 import { FlatList } from 'react-native';
 import { CurrentlyWatchedItem, ICurrentlyWatched } from '../../components/CurrentlyWatchedItem';
+import { CurrentlyWatchedItemLoading } from '../../components/CurrentlyWatchedItem/CurrentlyWatchedItemLoading';
 import { FollowedItem, IStreamFollowed } from '../../components/FollowedItem';
+import { FollowedItemLoading } from '../../components/FollowedItem/FollowedItemLoading';
 import { PowerButton } from '../../components/PowerButton';
 import { useAuth } from '../../hooks/useAuth';
 import { api } from '../../services/api';
@@ -22,29 +24,20 @@ import {
   ProfileName,
 } from './styled';
 
-const item = [
-  {
-    id: '121',
-    item: 'bla',
-  },
-  {
-    id: '122',
-    item: 'bla',
-  },
-  {
-    id: '123',
-    item: 'bla',
-  },
-  {
-    id: '124',
-    item: 'bla',
-  },
-];
-
 export function Home() {
   const { signOut, isAuthLoading, user } = useAuth();
   const [streamFollowed, setStreamFollowed] = useState<IStreamFollowed[]>([]);
   const [currentlyWatched, setCurrentlyWatched] = useState<ICurrentlyWatched[]>([]);
+
+  const [isDataLoading, setIsDataLoading] = useState(false);
+
+  const fakeStreamFollowed = [{ id: '123' } as IStreamFollowed, { id: '124' } as IStreamFollowed];
+
+  const FakeCurrentlyWatched = [
+    { id: '123' } as ICurrentlyWatched,
+    { id: '124' } as ICurrentlyWatched,
+    { id: '125' } as ICurrentlyWatched,
+  ];
 
   async function getStreamFollowed() {
     const responseStreamFollowed = await api.get(`/streams/followed?user_id=${user?.id}`);
@@ -72,7 +65,6 @@ export function Home() {
 
   async function getCurrentlyWatched() {
     const responseCurrentlyWatched = await api.get('/games/top');
-
     const response = responseCurrentlyWatched.data.data.map((current: ICurrentlyWatched) => {
       return {
         id: current.id,
@@ -85,8 +77,10 @@ export function Home() {
 
   useEffect(() => {
     (async () => {
+      setIsDataLoading(true);
       await getStreamFollowed();
       await getCurrentlyWatched();
+      setIsDataLoading(false);
     })();
   }, []);
 
@@ -110,28 +104,32 @@ export function Home() {
         <FollowContainer>
           <FollowTitle>Canais que você segue</FollowTitle>
           <FlatList
-            data={streamFollowed}
+            data={isDataLoading ? fakeStreamFollowed : streamFollowed}
             style={{ marginTop: 20 }}
             horizontal={true}
             keyExtractor={(item) => String(item.id)}
             showsHorizontalScrollIndicator={false}
             maxToRenderPerBatch={4}
             initialNumToRender={4}
-            renderItem={({ item }) => <FollowedItem item={item} />}
+            renderItem={({ item }) =>
+              isDataLoading ? <FollowedItemLoading /> : <FollowedItem item={item} />
+            }
           />
         </FollowContainer>
 
         <CurrentlyWatchedContainer>
           <CurrentlyWatchedTitle>Mais assistidos do momento</CurrentlyWatchedTitle>
           <FlatList
-            data={currentlyWatched}
+            data={isDataLoading ? FakeCurrentlyWatched : currentlyWatched}
             style={{ marginTop: 20 }}
             horizontal={true}
             keyExtractor={(item) => String(item.id)}
             showsHorizontalScrollIndicator={false}
             maxToRenderPerBatch={5}
             initialNumToRender={3}
-            renderItem={({ item }) => <CurrentlyWatchedItem item={item} />}
+            renderItem={({ item }) =>
+              isDataLoading ? <CurrentlyWatchedItemLoading /> : <CurrentlyWatchedItem item={item} />
+            }
           />
         </CurrentlyWatchedContainer>
 
