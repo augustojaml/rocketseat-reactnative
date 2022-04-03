@@ -2,6 +2,7 @@ import { DMSans_400Regular, DMSans_500Medium, DMSans_700Bold } from '@expo-googl
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 import React from 'react';
+import { AuthProvider } from './src/hooks/useAuth';
 import { Routes } from './src/routes';
 
 export default function App() {
@@ -17,7 +18,9 @@ export default function App() {
 
   return (
     <>
-      <Routes />
+      <AuthProvider>
+        <Routes />
+      </AuthProvider>
     </>
   );
 }

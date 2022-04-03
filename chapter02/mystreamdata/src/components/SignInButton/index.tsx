@@ -1,12 +1,15 @@
 import React from 'react';
-import { TouchableOpacityProps } from 'react-native';
+import { ActivityIndicator, TouchableOpacityProps } from 'react-native';
+import { RFValue } from 'react-native-responsive-fontsize';
+import { theme } from '../../theme';
 import { Container, ContainerIcon, ContainerTitle, Icon, Title } from './styled';
 
 interface SignInButtonProps extends TouchableOpacityProps {
   title?: string;
+  isLoading?: boolean;
 }
 
-export function SignInButton({ title = 'button', ...rest }: SignInButtonProps) {
+export function SignInButton({ title = 'button', isLoading = false, ...rest }: SignInButtonProps) {
   return (
     <>
       <Container activeOpacity={0.8} {...rest}>
@@ -14,7 +17,11 @@ export function SignInButton({ title = 'button', ...rest }: SignInButtonProps) {
           <Icon name="twitch" />
         </ContainerIcon>
         <ContainerTitle>
-          <Title>{title}</Title>
+          {isLoading ? (
+            <ActivityIndicator size={RFValue(30)} color={theme.colors.text100} />
+          ) : (
+            <Title>{title}</Title>
+          )}
         </ContainerTitle>
       </Container>
     </>

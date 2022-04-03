@@ -1,4 +1,3 @@
-import { Feather } from '@expo/vector-icons';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 import { theme } from '../../theme';
@@ -53,21 +52,16 @@ export const ProfileName = styled.Text`
   font-family: ${theme.fonts.bold};
 `;
 
-export const IconContainer = styled.TouchableOpacity``;
-
-export const Icon = styled(Feather)`
-  font-size: ${RFValue(24)}px;
-  color: ${theme.colors.text100};
-`;
-
 export const FollowContainer = styled.View`
   padding: 10px 20px;
+  padding-top: 10px;
 `;
 
 export const FollowTitle = styled.Text`
   color: ${theme.colors.text100};
   font-size: ${RFValue(20)}px;
   font-family: ${theme.fonts.bold};
+  margin-top: 10px;
 `;
 
 export const CurrentlyWatchedContainer = styled.View`

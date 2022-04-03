@@ -1,5 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
+import { useAuth } from '../hooks/useAuth';
 import { AppRoutes } from './app.routes';
 import { AuthRoutes } from './auth.routes';
 
@@ -13,11 +14,11 @@ declare global {
 }
 
 export function Routes() {
-  const user = undefined;
+  const { user } = useAuth();
 
   return (
     <>
-      <NavigationContainer>{!user ? <AppRoutes /> : <AuthRoutes />}</NavigationContainer>
+      <NavigationContainer>{user ? <AppRoutes /> : <AuthRoutes />}</NavigationContainer>
     </>
   );
 }

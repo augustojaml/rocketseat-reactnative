@@ -12,18 +12,29 @@ import {
   FollowTitle,
 } from './styled';
 
-export function FollowItem() {
+export interface IStreamFollowed {
+  id: string;
+  thumbnail_url: string;
+  title: string;
+  viewer_count: number;
+}
+
+interface IStreamFollowedItem {
+  item: IStreamFollowed;
+}
+
+export function FollowItem({ item }: IStreamFollowedItem) {
   return (
     <>
       <Container>
         <FollowThumbnailContainer>
           <FollowBanner
             source={{
-              uri: 'https://static-cdn.jtvnw.net/previews-ttv/live_user_leegengar-440x248.jpg',
+              uri: item.thumbnail_url.replace('{width}x{height}', '780x435'),
             }}
           />
           <FollowOverlay>
-            <FollowSpectators>29,4 mil espectadores</FollowSpectators>
+            <FollowSpectators>{item.viewer_count} espectadores</FollowSpectators>
           </FollowOverlay>
         </FollowThumbnailContainer>
         <FollowProfile>

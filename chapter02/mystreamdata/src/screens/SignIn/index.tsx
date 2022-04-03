@@ -2,6 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { HeroSvg, StreamDataPng } from '../../assets/images';
 import { SignInButton } from '../../components/SignInButton';
+import { useAuth } from '../../hooks/useAuth';
 import {
   Container,
   Footer,
@@ -15,8 +16,10 @@ import {
 export function SignIn() {
   const navigation = useNavigation();
 
-  function handleSignIn() {
-    navigation.navigate('Home');
+  const { signIn, isAuthLoading } = useAuth();
+
+  async function handleSignIn() {
+    await signIn();
   }
 
   return (
@@ -33,7 +36,11 @@ export function SignIn() {
           <FooterTile>
             Veja dados{'\n'}interessantes sobre{'\n'}o mundo da Twitch
           </FooterTile>
-          <SignInButton onPress={handleSignIn} title="Entrar com Twitch" />
+          <SignInButton
+            isLoading={isAuthLoading}
+            onPress={handleSignIn}
+            title="Entrar com Twitch"
+          />
         </Footer>
       </Container>
     </>

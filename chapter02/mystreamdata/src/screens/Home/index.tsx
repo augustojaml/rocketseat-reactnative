@@ -1,8 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FlatList } from 'react-native';
-import { CurrentlyWatchedItem } from '../../components/CurrentlyWatchedItem';
-import { FollowItem } from '../../components/FollowItem';
+import { CurrentlyWatchedItem, ICurrentlyWatched } from '../../components/CurrentlyWatchedItem';
+import { FollowItem, IStreamFollowed } from '../../components/FollowItem';
+import { PowerButton } from '../../components/PowerButton';
+import { useAuth } from '../../hooks/useAuth';
+import { api } from '../../services/api';
 import {
   Container,
   CurrentlyVersion,
@@ -13,8 +16,6 @@ import {
   Greeting,
   Header,
   HeaderWrapper,
-  Icon,
-  IconContainer,
   ProfileContainer,
   ProfileImage,
   ProfileInfo,
@@ -41,6 +42,43 @@ const item = [
 ];
 
 export function Home() {
+  const { signOut, isAuthLoading, user } = useAuth();
+  const [streamFollowed, setStreamFollowed] = useState<IStreamFollowed[]>();
+  const [currentlyWatched, setCurrentlyWatched] = useState<ICurrentlyWatched[]>();
+
+  async function getStreamFollowed(data: IStreamFollowed[]) {
+    const response = data.map((followed) => {
+      return {
+        id: followed.id,
+        thumbnail_url: followed.thumbnail_url,
+        title: followed.title,
+        viewer_count: followed.viewer_count,
+      };
+    });
+    setStreamFollowed(response);
+  }
+
+  async function getCurrentlyWatched(data: ICurrentlyWatched[]) {
+    const response = data.map((current) => {
+      return {
+        id: current.id,
+        name: current.name,
+        box_art_url: current.box_art_url,
+      };
+    });
+    setCurrentlyWatched(response);
+  }
+
+  useEffect(() => {
+    (async () => {
+      const responseStreamFollowed = await api.get(`/streams/followed?user_id=${user?.id}`);
+      await getStreamFollowed(responseStreamFollowed.data.data);
+
+      const responseCurrentlyWatched = await api.get('/games/top');
+      await getCurrentlyWatched(responseCurrentlyWatched.data.data);
+    })();
+  }, []);
+
   return (
     <>
       <StatusBar style="light" backgroundColor="transparent" translucent />
@@ -48,37 +86,41 @@ export function Home() {
         <Header>
           <HeaderWrapper>
             <ProfileContainer>
-              <ProfileImage source={{ uri: 'https://github.com/augustojaml.png' }} />
+              <ProfileImage source={{ uri: user?.avatar }} />
               <ProfileInfo>
                 <Greeting>Ola, </Greeting>
-                <ProfileName>Augusto</ProfileName>
+                <ProfileName>{user?.name}</ProfileName>
               </ProfileInfo>
             </ProfileContainer>
-            <IconContainer>
-              <Icon name="power" />
-            </IconContainer>
+            <PowerButton isLoading={isAuthLoading} onPress={signOut} />
           </HeaderWrapper>
         </Header>
 
         <FollowContainer>
           <FollowTitle>Canais que você segue</FollowTitle>
           <FlatList
+            data={streamFollowed}
             style={{ marginTop: 20 }}
             horizontal={true}
-            data={item}
             keyExtractor={(item) => String(item.id)}
-            renderItem={({ item }) => <FollowItem />}
+            showsHorizontalScrollIndicator={false}
+            maxToRenderPerBatch={4}
+            initialNumToRender={4}
+            renderItem={({ item }) => <FollowItem item={item} />}
           />
         </FollowContainer>
 
         <CurrentlyWatchedContainer>
           <CurrentlyWatchedTitle>Mais assistidos do momento</CurrentlyWatchedTitle>
           <FlatList
+            data={currentlyWatched}
             style={{ marginTop: 20 }}
             horizontal={true}
-            data={item}
             keyExtractor={(item) => String(item.id)}
-            renderItem={({ item }) => <CurrentlyWatchedItem />}
+            showsHorizontalScrollIndicator={false}
+            maxToRenderPerBatch={5}
+            initialNumToRender={3}
+            renderItem={({ item }) => <CurrentlyWatchedItem item={item} />}
           />
         </CurrentlyWatchedContainer>
 
