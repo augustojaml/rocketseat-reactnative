@@ -5,6 +5,7 @@ import { theme } from '../../theme';
 
 export const Container = styled.TouchableOpacity`
   margin-right: 20px;
+  width: ${RFValue(260)}px;
 `;
 
 export const FollowThumbnailContainer = styled.View`

@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
 import { FlatList } from 'react-native';
 import { CurrentlyWatchedItem, ICurrentlyWatched } from '../../components/CurrentlyWatchedItem';
-import { FollowItem, IStreamFollowed } from '../../components/FollowItem';
+import { FollowedItem, IStreamFollowed } from '../../components/FollowedItem';
 import { PowerButton } from '../../components/PowerButton';
 import { useAuth } from '../../hooks/useAuth';
 import { api } from '../../services/api';
@@ -43,23 +43,37 @@ const item = [
 
 export function Home() {
   const { signOut, isAuthLoading, user } = useAuth();
-  const [streamFollowed, setStreamFollowed] = useState<IStreamFollowed[]>();
-  const [currentlyWatched, setCurrentlyWatched] = useState<ICurrentlyWatched[]>();
+  const [streamFollowed, setStreamFollowed] = useState<IStreamFollowed[]>([]);
+  const [currentlyWatched, setCurrentlyWatched] = useState<ICurrentlyWatched[]>([]);
 
-  async function getStreamFollowed(data: IStreamFollowed[]) {
-    const response = data.map((followed) => {
-      return {
-        id: followed.id,
-        thumbnail_url: followed.thumbnail_url,
-        title: followed.title,
-        viewer_count: followed.viewer_count,
-      };
-    });
+  async function getStreamFollowed() {
+    const responseStreamFollowed = await api.get(`/streams/followed?user_id=${user?.id}`);
+    const response = await Promise.all<IStreamFollowed[]>(
+      responseStreamFollowed.data.data.map(async (followed: IStreamFollowed) => {
+        const followUserResponse = await api.get(`/users?id=${followed.user_id}`);
+
+        return {
+          id: followed.id,
+          thumbnail_url: followed.thumbnail_url,
+          title: followed.title,
+          viewer_count:
+            followed.viewer_count / 1000 >= 1
+              ? followed.viewer_count / 1000 + ' mil'
+              : followed.viewer_count,
+          user_login: followed.user_login,
+          user_id: followUserResponse.data.data[0].id,
+          user_display_name: followUserResponse.data.data[0].display_name,
+          user_avatar: followUserResponse.data.data[0].profile_image_url,
+        };
+      })
+    );
     setStreamFollowed(response);
   }
 
-  async function getCurrentlyWatched(data: ICurrentlyWatched[]) {
-    const response = data.map((current) => {
+  async function getCurrentlyWatched() {
+    const responseCurrentlyWatched = await api.get('/games/top');
+
+    const response = responseCurrentlyWatched.data.data.map((current: ICurrentlyWatched) => {
       return {
         id: current.id,
         name: current.name,
@@ -71,11 +85,8 @@ export function Home() {
 
   useEffect(() => {
     (async () => {
-      const responseStreamFollowed = await api.get(`/streams/followed?user_id=${user?.id}`);
-      await getStreamFollowed(responseStreamFollowed.data.data);
-
-      const responseCurrentlyWatched = await api.get('/games/top');
-      await getCurrentlyWatched(responseCurrentlyWatched.data.data);
+      await getStreamFollowed();
+      await getCurrentlyWatched();
     })();
   }, []);
 
@@ -106,7 +117,7 @@ export function Home() {
             showsHorizontalScrollIndicator={false}
             maxToRenderPerBatch={4}
             initialNumToRender={4}
-            renderItem={({ item }) => <FollowItem item={item} />}
+            renderItem={({ item }) => <FollowedItem item={item} />}
           />
         </FollowContainer>
 
