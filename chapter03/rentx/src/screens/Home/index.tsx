@@ -1,14 +1,18 @@
 import React from 'react';
 import { LogoSvg } from '../../assests/images';
 
-import { Container, ImageSvg, Title } from './styled';
+import { Container, Header, HeaderWrapper, CountCar } from './styled';
 
 export function Home() {
   return (
     <>
       <Container>
-        <LogoSvg />
-        <Title>Home</Title>
+        <Header>
+          <HeaderWrapper>
+            <LogoSvg />
+            <CountCar>Total de 12 carros</CountCar>
+          </HeaderWrapper>
+        </Header>
       </Container>
     </>
   );
