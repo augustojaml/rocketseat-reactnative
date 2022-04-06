@@ -7,7 +7,7 @@ export const theme = {
       main400: rgba('#DC1637', 0.6),
       main900: '#DC1637',
 
-      background: '#F4F5F6',
+      background: '#e6e6e8',
       shape: '#FFFFFF',
 
       primary500: '#AEAEB3',
@@ -29,7 +29,7 @@ export const theme = {
     name: 'dark',
     colors: {
       main400: rgba('#DC1637', 0.6),
-      main900: '#202024',
+      main900: '#DC1637',
 
       background: '#121214',
       shape: '#202024',

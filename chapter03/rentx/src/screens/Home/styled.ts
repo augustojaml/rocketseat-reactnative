@@ -29,7 +29,7 @@ export const CountCar = styled.Text`
   font-size: ${RFValue(15)}px;
 `;
 
-export const ImageSvg = styled.Image`
-  width: ${RFValue(98)}px;
-  height: ${RFValue(13)}px;
+export const Content = styled.View`
+  flex: 1;
+  padding: 20px;
 `;
