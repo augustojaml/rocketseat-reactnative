@@ -1,0 +1,14 @@
+URL
+=======================
+backup_url 		:  http://192.168.100.5:8000/
+new_url			: ?
+
+USER WP
+=======================
+user          	: matraca
+pass          	: 0@*)WvDnE4NLUeTKa)
+
+email
+=======================
+Usuario	     	: no-reply@botecodojuca.com.br
+Senha 	     	: 0@*)WvDnE4NLUeTKa)
