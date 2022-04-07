@@ -1,7 +1,7 @@
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
-export const Container = styled.View`
+export const Container = styled.TouchableOpacity`
   width: 100%;
   flex-direction: row;
   justify-content: space-between;
@@ -10,7 +10,9 @@ export const Container = styled.View`
   margin-bottom: 24px;
 `;
 
-export const CarWrapper = styled.View``;
+export const CarWrapper = styled.View`
+  flex: 1;
+`;
 
 export const Brand = styled.Text`
   font-size: ${RFValue(10)}px;
@@ -21,7 +23,6 @@ export const Brand = styled.Text`
 
 export const Model = styled.Text`
   font-size: ${RFValue(15)}px;
-  text-transform: uppercase;
   font-family: ${({ theme }) => theme.fonts.medium};
   color: ${({ theme }) => theme.colors.primary600};
 `;
@@ -30,6 +31,7 @@ export const Details = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-end;
+  padding-right: ${RFValue(30)}px;
 `;
 
 export const Rent = styled.View`

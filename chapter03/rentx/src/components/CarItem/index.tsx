@@ -1,4 +1,5 @@
 import React from 'react';
+import { ICar } from '../../hooks/useCar';
 
 import {
   Container,
@@ -12,30 +13,31 @@ import {
   RentPrice,
 } from './styled';
 
-interface CarItemProps {
+interface CarItemProps extends TouchableOpacityProps {
   item: ICar;
 }
 
-import carTest from '../../../fakeApi/cars/audi/01.png';
-import { GasolineSvg } from '../../assets/images';
-import { ICar } from '../../hooks/useCar';
+import { carAccessories } from '../../utils/carAccessories';
+import { TouchableOpacityProps } from 'react-native';
 
-export function CarItem({ item }: CarItemProps) {
+export function CarItem({ item, ...rest }: CarItemProps) {
+  const ImageSvg = carAccessories[item.fuel_type];
+
   return (
     <>
-      <Container>
+      <Container {...rest} activeOpacity={0.6}>
         <CarWrapper>
           <Brand>{item.brand}</Brand>
-          <Model>{item.model}é</Model>
+          <Model>{item.model}</Model>
           <Details>
             <Rent>
               <RentPeriod>AO DIA</RentPeriod>
               <RentPrice>R$ {item.daily_rate}</RentPrice>
             </Rent>
-            <GasolineSvg width={22.5} height={29.5} />
+            <ImageSvg width={22.5} height={29.5} />
           </Details>
         </CarWrapper>
-        <CarThumbnail source={{ uri: item.photos[0] }} />
+        <CarThumbnail source={{ uri: String(item.photos[0]) }} />
       </Container>
     </>
   );
