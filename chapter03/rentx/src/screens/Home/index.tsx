@@ -16,7 +16,7 @@ export function Home() {
   const navigation = useNavigation();
 
   function handleNavigationCarDetails(car: ICar) {
-    navigation.navigate('CarDetails', { car: car });
+    navigation.navigate('Details', { car: car });
   }
 
   return (
@@ -26,7 +26,11 @@ export function Home() {
           <StatusBar translucent style="light" />
           <HeaderWrapper>
             <LogoSvg />
-            <CountCar>Total de 12 carros</CountCar>
+
+            <CountCar>
+              Total de{' '}
+              {isLoadingCars ? '0 carros' : `${String(cars.length).padStart(2, '0')} carro`}
+            </CountCar>
           </HeaderWrapper>
         </Header>
         {isLoadingCars ? (

@@ -7,7 +7,7 @@ interface ComponentProps {
   isBulletActive?: boolean;
 }
 
-const sliderHeight = (Dimensions.get('screen').width * 7) / 16;
+const sliderHeight = (Dimensions.get('screen').width * 4) / 16;
 
 export const Container = styled.View`
   width: 100%;
@@ -66,7 +66,7 @@ export const ScrollItem = styled.View`
 `;
 
 export const ScrollImage = styled.Image.attrs({
-  resizeMode: 'cover',
+  resizeMode: 'contain',
 })`
   width: ${RFValue(300)}px;
   height: ${RFValue(141)}px;

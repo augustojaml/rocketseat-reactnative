@@ -18,7 +18,7 @@ export const Brand = styled.Text`
   font-size: ${RFValue(10)}px;
   text-transform: uppercase;
   font-family: ${({ theme }) => theme.fonts.regular};
-  color: ${({ theme }) => theme.colors.primary400};
+  color: ${({ theme }) => theme.colors.primary500};
 `;
 
 export const Model = styled.Text`
@@ -42,7 +42,7 @@ export const RentPeriod = styled.Text`
   font-size: ${RFValue(10)}px;
   text-transform: uppercase;
   font-family: ${({ theme }) => theme.fonts.regular};
-  color: ${({ theme }) => theme.colors.primary400};
+  color: ${({ theme }) => theme.colors.primary500};
 `;
 
 export const RentPrice = styled.Text`

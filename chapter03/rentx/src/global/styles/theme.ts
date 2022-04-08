@@ -10,8 +10,8 @@ export const theme = {
       background: '#e6e6e8',
       shape: '#FFFFFF',
 
-      primary500: '#AEAEB3',
-      primary400: '#7A7A80',
+      primary400: '#AEAEB3',
+      primary500: '#7A7A80',
       primary600: '#47474D',
       primary800: '#1B1B1F',
 

@@ -12,6 +12,10 @@ export interface ICar {
   daily_rate: number;
   fuel_type: string;
   description: string;
+  accessories: Array<{
+    type: string;
+    name: string;
+  }>;
   photos: String[];
 }
 
