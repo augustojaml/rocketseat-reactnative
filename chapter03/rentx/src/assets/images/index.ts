@@ -1,5 +1,6 @@
 import AccelerationSvg from './acceleration.svg';
 import ArrowSvg from './arrow.svg';
+import ArrowRightSvg from './arrow-right.svg';
 import CalendarWhiteSvg from './calendar-white.svg';
 import CalendarSvg from './calendar.svg';
 import CamSvg from './cam.svg';
@@ -22,6 +23,7 @@ import SpeedSvg from './speed.svg';
 export {
   AccelerationSvg,
   ArrowSvg,
+  ArrowRightSvg,
   CalendarSvg,
   CalendarWhiteSvg,
   CamSvg,

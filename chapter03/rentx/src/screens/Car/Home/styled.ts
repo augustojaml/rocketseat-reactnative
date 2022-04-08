@@ -1,4 +1,4 @@
-import { theme } from './../../global/styles/theme';
+import { theme } from '../../../global/styles/theme';
 import styled from 'styled-components/native';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 
@@ -32,6 +32,7 @@ export const CountCar = styled.Text`
 export const Content = styled.View`
   flex: 1;
   padding: 20px;
+  padding-bottom: 0;
 `;
 
 export const ContentLoading = styled.View`

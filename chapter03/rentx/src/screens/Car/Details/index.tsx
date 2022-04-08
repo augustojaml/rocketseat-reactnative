@@ -1,11 +1,12 @@
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { useFocusEffect, useNavigation, useRoute } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { ScrollView } from 'react-native';
 import { CarSvg } from '../../../assets/images';
 import { Button } from '../../../components/Button';
 import { SliderCarHeader } from '../../../components/SliderCarHeader';
 import { ICar } from '../../../hooks/useCar';
+import { useCustomRoute } from '../../../hooks/useCustomRoute';
 import { carAccessories } from '../../../utils/carAccessories';
 import {
   Container,
@@ -29,6 +30,8 @@ interface ICarParams {
 
 export function Details() {
   const { car } = useRoute().params as ICarParams;
+
+  const { showTab, changeShowTab } = useCustomRoute();
 
   const navigation = useNavigation();
 

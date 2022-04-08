@@ -3,7 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Dimensions } from 'react-native';
 import { ConfirmationBackgroundSvg, DoneSvg } from '../../assets/images';
-import { IConfirmation } from '../../routes/app.routes';
+import { IConfirmation } from '../../routes/app.stack.routes';
 
 import {
   ConfirmationButton,

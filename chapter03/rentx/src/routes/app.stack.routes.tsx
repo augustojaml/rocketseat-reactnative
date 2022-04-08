@@ -4,8 +4,11 @@ import { Details } from '../screens/Car/Details';
 import { Scheduling } from '../screens/Car/Scheduling';
 import { DetailsPrice } from '../screens/Car/DetailsPrice';
 
-import { Home } from '../screens/Home';
+import { Home } from '../screens/Car/Home';
 import { Confirmation } from '../screens/Confirmation';
+
+import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
+import { useLayoutEffect } from 'react';
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -27,7 +30,7 @@ declare global {
   }
 }
 
-export function AppStackRoutes() {
+export function AppStackRoutes({ navigation, route }) {
   return (
     <>
       <Navigator initialRouteName={'Home'} screenOptions={{ headerShown: false }}>

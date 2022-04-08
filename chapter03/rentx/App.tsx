@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home } from './src/screens/Home';
+import { Home } from './src/screens/Car/Home';
 
 import {
   Archivo_400Regular,
@@ -19,6 +19,7 @@ import AppLoading from 'expo-app-loading';
 import { CustomThemeProvider } from './src/hooks/useAppTheme';
 import { CarProvider } from './src/hooks/useCar';
 import { Routes } from './src/routes';
+import { CustomRouteProvider } from './src/hooks/useCustomRoute';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -41,7 +42,9 @@ export default function App() {
     <>
       <CustomThemeProvider>
         <CarProvider>
-          <Routes />
+          <CustomRouteProvider>
+            <Routes />
+          </CustomRouteProvider>
         </CarProvider>
       </CustomThemeProvider>
     </>

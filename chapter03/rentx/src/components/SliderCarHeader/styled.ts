@@ -68,6 +68,6 @@ export const ScrollItem = styled.View`
 export const ScrollImage = styled.Image.attrs({
   resizeMode: 'contain',
 })`
-  width: ${RFValue(300)}px;
-  height: ${RFValue(141)}px;
+  width: ${RFValue(200)}px;
+  height: ${RFValue(100)}px;
 `;
