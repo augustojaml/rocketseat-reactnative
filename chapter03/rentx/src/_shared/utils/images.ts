@@ -4,6 +4,7 @@ import CamSvg from '../images/cam.svg';
 import CarSvg from '../images/car.svg';
 import ChevronleftSvg from '../images/chevron-left.svg';
 import ChevronrightSvg from '../images/chevron-right.svg';
+import CreditcardSvg from '../images/credit-card.svg';
 import ElectricSvg from '../images/electric.svg';
 import ExchangeSvg from '../images/exchange.svg';
 import EyeSvg from '../images/eye.svg';
@@ -22,6 +23,7 @@ import SearchSvg from '../images/search.svg';
 import SettingSvg from '../images/setting.svg';
 import SpeedSvg from '../images/speed.svg';
 import UpSvg from '../images/up.svg';
+import UserSvg from '../images/user.svg';
 
 export {
   ArrowlongrightSvg,
@@ -30,6 +32,7 @@ export {
   CarSvg,
   ChevronleftSvg,
   ChevronrightSvg,
+  CreditcardSvg,
   ElectricSvg,
   ExchangeSvg,
   EyeSvg,
@@ -47,6 +50,7 @@ export {
   SearchSvg,
   SettingSvg,
   UpSvg,
+  UserSvg,
 };
 
 export const carAccessories = {

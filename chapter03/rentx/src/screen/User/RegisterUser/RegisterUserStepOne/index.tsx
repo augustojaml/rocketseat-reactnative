@@ -1,49 +1,43 @@
+import React, { useEffect, useRef, useState } from 'react';
+import { Alert, ScrollView } from 'react-native';
+import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
+
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as YUP from 'yup';
 import { useForm } from 'react-hook-form';
 
-import { useNavigation } from '@react-navigation/native';
-import React, { useEffect, useRef, useState } from 'react';
-
-import { Alert, ScrollView } from 'react-native';
-import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import { useTheme } from 'styled-components';
 
-import { Button } from '../../../_shared/components/Button';
-import { InputText } from '../../../_shared/components/InputText';
-import { MainButton, MainHeader } from '../../../_shared/components/styled';
-import { ChevronleftSvg, LockSvg, MailSvg } from '../../../_shared/utils/images';
+import { MainButton, MainHeader } from '../../../../_shared/components/styled';
 
-import {
-  Container,
-  CreateAccountButton,
-  CreateAccountTitle,
-  Form,
-  HeaderWrapper,
-  LoginDescription,
-  LoginTitle,
-} from './styled';
+import { ChevronleftSvg, CreditcardSvg, MailSvg, UserSvg } from '../../../../_shared/utils/images';
+
+import { Container, Form, HeaderWrapper, StepTitle } from './styled';
+import { InputText } from '../../../../_shared/components/InputText';
+import { Button } from '../../../../_shared/components/Button';
+import { useNavigation } from '@react-navigation/native';
 
 interface Form {
   [x: string]: any;
 }
 
 interface FormData {
+  name: string;
   email: string;
-  password: string;
+  driveLicense: string;
 }
 
 const schema = YUP.object().shape({
-  email: YUP.string().email('E-mail inválido').required('E-mail é obrigatório'),
-  password: YUP.string().required('Nome é obrigatório'),
+  name: YUP.string().required('Nome obrigatório'),
+  email: YUP.string().email('E-mail inválido').required('E-mail obrigatório'),
+  driveLicense: YUP.string().required('Carteira de motorista obrigatório'),
 });
 
-export function LoginUser() {
+export function RegisterUserStepOne() {
   const scrollView = useRef<ScrollView>(null);
   const theme = useTheme();
-  const navigation = useNavigation();
-
   const [buttonActive, setButtonActive] = useState(false);
+  const navigation = useNavigation();
 
   const {
     control,
@@ -55,35 +49,42 @@ export function LoginUser() {
     resolver: yupResolver(schema),
   });
 
-  const watchFields = watch(['name', 'email']);
-
   function scrollToTopOnInputFocus() {
     scrollView.current?.scrollTo({ y: 150, animated: true });
   }
 
   function handleFormSubmit(form: Form) {
     const inputForm = form as FormData;
-    console.log('Logando aguarde!', inputForm);
+    navigation.navigate('RegisterUserStepTwo', { stepOne: inputForm });
+
     reset({
+      name: undefined,
       email: undefined,
-      password: undefined,
+      driveLicense: undefined,
     });
   }
 
-  function handleNavigationToRegisterUser() {
-    navigation.navigate('RegisterUserStepOne');
+  function handleNavigationGoBack() {
+    navigation.goBack();
   }
 
   useEffect(() => {
+    if (errors && errors.name) {
+      return Alert.alert(errors.name.message);
+    }
+
     if (errors && errors.email) {
       return Alert.alert(errors.email.message);
     }
 
-    if (errors && errors.password) {
-      return Alert.alert(errors.email.message);
+    if (errors && errors.driveLicense) {
+      return Alert.alert(errors.driveLicense.message);
     }
+
     watch((value) => {
-      value.email && value.password ? setButtonActive(true) : setButtonActive(false);
+      value.name && value.email && value.driveLicense
+        ? setButtonActive(true)
+        : setButtonActive(false);
     });
   }, [errors, watch]);
 
@@ -92,7 +93,7 @@ export function LoginUser() {
       <Container>
         <MainHeader background={theme.colors.background}>
           <HeaderWrapper>
-            <MainButton>
+            <MainButton onPress={handleNavigationGoBack}>
               <ChevronleftSvg width={RFValue(30)} height={RFValue(30)} />
             </MainButton>
           </HeaderWrapper>
@@ -107,11 +108,15 @@ export function LoginUser() {
           }}
           bounces={false}
         >
-          <LoginTitle>Estamos{'\n'}quase lá.</LoginTitle>
-          <LoginDescription>
-            Faça seu login para começar{'\n'}uma experiência incrível.
-          </LoginDescription>
+          <StepTitle>1. Dados</StepTitle>
           <Form>
+            <InputText
+              control={control}
+              icon={UserSvg}
+              name="name"
+              placeholder="Nome"
+              scrollToTopOnInputFocus={scrollToTopOnInputFocus}
+            />
             <InputText
               control={control}
               icon={MailSvg}
@@ -121,21 +126,17 @@ export function LoginUser() {
             />
             <InputText
               control={control}
-              icon={LockSvg}
-              name="password"
-              placeholder="Senha"
-              isPassword
+              icon={CreditcardSvg}
+              name="driveLicense"
+              placeholder="CNH"
               scrollToTopOnInputFocus={scrollToTopOnInputFocus}
             />
             <Button
-              title="Login"
-              style={{ marginTop: 30, marginBottom: 10 }}
-              onPress={handleSubmit(handleFormSubmit)}
+              title="Próximo"
+              style={{ marginTop: 24 }}
               isActive={buttonActive}
+              onPress={handleSubmit(handleFormSubmit)}
             />
-            <CreateAccountButton onPress={handleNavigationToRegisterUser}>
-              <CreateAccountTitle>Criar conta gratuita</CreateAccountTitle>
-            </CreateAccountButton>
           </Form>
         </ScrollView>
       </Container>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { EyeoffSvg, EyeSvg } from '../../../utils/images';
+import { EyeoffSvg, EyeSvg } from '../../utils/images';
 import { Control, Controller } from 'react-hook-form';
 
 import { Container, CustomInput, IconContainer, IconContainerButton } from './styled';
@@ -15,7 +15,7 @@ interface ComponentProps extends TextInputProps {
   scrollToTopOnInputFocus?: () => void;
 }
 
-export function TextInput({
+export function InputText({
   control,
   icon: Icon,
   name,
@@ -38,7 +38,7 @@ export function TextInput({
   }
 
   function handleCheckIsFilled(value: string) {
-    value !== '' ? setIsFilled(true) : setIsFilled(false);
+    value ? setIsFilled(true) : setIsFilled(false);
   }
 
   function togglePassword() {
@@ -53,21 +53,20 @@ export function TextInput({
             <Icon fill={isFocused || isFilled ? theme.colors.main900 : theme.colors.primary500} />
           </IconContainer>
           <Controller
-            name={name}
             control={control}
-            render={({ field: { onChange, value } }) => {
-              return (
-                <CustomInput
-                  {...rest}
-                  onChange={onChange}
-                  value={value}
-                  onFocus={handleOnFocus}
-                  onBlur={handleOnBlur}
-                  onChangeText={handleCheckIsFilled}
-                  placeholderTextColor={theme.colors.primary400}
-                />
-              );
-            }}
+            name={name}
+            render={({ field: { onChange, value } }) => (
+              <CustomInput
+                onChangeText={(event: string) => {
+                  onChange(event);
+                  handleCheckIsFilled(event);
+                }}
+                value={value}
+                onFocus={handleOnFocus}
+                onBlur={handleOnBlur}
+                {...rest}
+              />
+            )}
           />
         </Container>
       ) : (
@@ -78,19 +77,19 @@ export function TextInput({
           <Controller
             name={name}
             control={control}
-            render={({ field: { onChange, value } }) => {
-              return (
-                <CustomInput
-                  onChange={onChange}
-                  value={value}
-                  onFocus={handleOnFocus}
-                  onBlur={handleOnBlur}
-                  onChangeText={handleCheckIsFilled}
-                  secureTextEntry={showPassword}
-                  {...rest}
-                />
-              );
-            }}
+            render={({ field: { onChange, value } }) => (
+              <CustomInput
+                onChangeText={(event: string) => {
+                  onChange(event);
+                  handleCheckIsFilled(event);
+                }}
+                value={value}
+                onFocus={handleOnFocus}
+                onBlur={handleOnBlur}
+                secureTextEntry={showPassword}
+                {...rest}
+              />
+            )}
           />
           <IconContainerButton onPress={togglePassword}>
             {showPassword ? (
