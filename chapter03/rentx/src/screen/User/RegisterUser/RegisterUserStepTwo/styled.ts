@@ -1,5 +1,6 @@
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
+import { MainStepTitle } from '../../../../_shared/components/styled';
 
 export const Container = styled.View`
   flex: 1;
@@ -14,11 +15,7 @@ export const HeaderWrapper = styled.View`
   align-items: flex-end;
 `;
 
-export const StepTitle = styled.Text`
-  font-size: ${RFValue(20)}px;
-  font-family: ${({ theme }) => theme.fonts.medium};
-  color: ${({ theme }) => theme.colors.primary600};
-`;
+export const StepTitle = styled(MainStepTitle)``;
 
 export const Form = styled.View`
   margin-top: ${RFValue(64)}px;

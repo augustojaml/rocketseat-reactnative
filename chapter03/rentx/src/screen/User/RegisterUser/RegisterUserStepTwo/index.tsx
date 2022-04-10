@@ -21,7 +21,8 @@ import {
 import { Container, Form, HeaderWrapper, StepTitle } from './styled';
 import { InputText } from '../../../../_shared/components/InputText';
 import { Button } from '../../../../_shared/components/Button';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { IRegisterUserStepOne } from '../../../../routes/user.stack.routes';
 
 interface Form {
   [x: string]: any;
@@ -37,11 +38,17 @@ const schema = YUP.object().shape({
   confirm_password: YUP.string().required('Nome obrigatório'),
 });
 
+interface IRegisterUserStepOneParams {
+  stepOne: IRegisterUserStepOne;
+}
+
 export function RegisterUserStepTwo() {
   const scrollView = useRef<ScrollView>(null);
   const theme = useTheme();
   const [buttonActive, setButtonActive] = useState(false);
   const navigation = useNavigation();
+
+  const { stepOne } = useRoute().params as IRegisterUserStepOneParams;
 
   const {
     control,
@@ -59,6 +66,33 @@ export function RegisterUserStepTwo() {
 
   function handleNavigationGoBack() {
     navigation.goBack();
+  }
+
+  function handleFormSubmit(form: Form) {
+    const inputForm = form as FormData;
+
+    if (inputForm.password !== inputForm.confirm_password) {
+      return Alert.alert('Confirmação de senha incorreta');
+    }
+
+    delete inputForm.confirm_password;
+
+    const data = {
+      ...inputForm,
+      ...stepOne,
+    };
+
+    // console.log(data);
+
+    navigation.navigate('Confirmation', {
+      screen: {
+        title: 'Conta Criada',
+        subTitle: '',
+        nextScreen: 'LoginUser',
+      },
+    });
+
+    reset();
   }
 
   useEffect(() => {
@@ -114,10 +148,11 @@ export function RegisterUserStepTwo() {
             />
             {buttonActive ? (
               <Button
-                title="Próximo"
+                title="Cadastrar"
                 style={{ marginTop: 24 }}
                 isActive={buttonActive}
                 background={theme.colors.secondary900}
+                onPress={handleSubmit(handleFormSubmit)}
               />
             ) : (
               <Button title="Próximo" style={{ marginTop: 24 }} isActive={buttonActive} />

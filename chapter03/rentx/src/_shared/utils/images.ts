@@ -17,6 +17,7 @@ import LogolargeSvg from '../images/logo-large.svg';
 import LogoSvg from '../images/logo.svg';
 import MailSvg from '../images/mail.svg';
 import OkSvg from '../images/ok.svg';
+import OkColorSvg from '../images/ok-colors.svg';
 import PeopleSvg from '../images/people.svg';
 import PowerSvg from '../images/people.svg';
 import SearchSvg from '../images/search.svg';
@@ -45,6 +46,7 @@ export {
   LogoSvg,
   MailSvg,
   OkSvg,
+  OkColorSvg,
   PeopleSvg,
   PowerSvg,
   SearchSvg,

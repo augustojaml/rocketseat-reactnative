@@ -39,9 +39,3 @@ export const CreateAccountButton = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
 `;
-
-export const CreateAccountTitle = styled.Text`
-  color: ${({ theme }) => theme.colors.primary600};
-  font-family: ${({ theme }) => theme.fonts.medium};
-  font-size: ${RFValue(15)}px;
-`;

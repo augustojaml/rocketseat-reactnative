@@ -36,3 +36,15 @@ export const MainTextMedium = styled.Text`
   font-family: ${({ theme }) => theme.fonts.medium};
   color: ${({ theme }) => theme.colors.primary600};
 `;
+
+export const MainButtonTitle = styled.Text`
+  color: ${({ theme }) => theme.colors.primary600};
+  font-family: ${({ theme }) => theme.fonts.medium};
+  font-size: ${RFValue(15)}px;
+`;
+
+export const MainStepTitle = styled.Text`
+  font-size: ${RFValue(20)}px;
+  font-family: ${({ theme }) => theme.fonts.medium};
+  color: ${({ theme }) => theme.colors.primary600};
+`;

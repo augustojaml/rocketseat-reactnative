@@ -11,13 +11,12 @@ import { useTheme } from 'styled-components';
 
 import { Button } from '../../../_shared/components/Button';
 import { InputText } from '../../../_shared/components/InputText';
-import { MainButton, MainHeader } from '../../../_shared/components/styled';
+import { MainButton, MainButtonTitle, MainHeader } from '../../../_shared/components/styled';
 import { ChevronleftSvg, LockSvg, MailSvg } from '../../../_shared/utils/images';
 
 import {
   Container,
   CreateAccountButton,
-  CreateAccountTitle,
   Form,
   HeaderWrapper,
   LoginDescription,
@@ -134,7 +133,7 @@ export function LoginUser() {
               isActive={buttonActive}
             />
             <CreateAccountButton onPress={handleNavigationToRegisterUser}>
-              <CreateAccountTitle>Criar conta gratuita</CreateAccountTitle>
+              <MainButtonTitle>Criar conta gratuita</MainButtonTitle>
             </CreateAccountButton>
           </Form>
         </ScrollView>

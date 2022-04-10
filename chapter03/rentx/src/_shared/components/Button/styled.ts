@@ -1,3 +1,4 @@
+import { MainButtonTitle } from './../styled';
 import { rgba } from 'polished';
 import { TouchableOpacityProps } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
@@ -17,8 +18,6 @@ export const Container = styled.TouchableOpacity<ComponentProps>`
   justify-content: center;
 `;
 
-export const Title = styled.Text`
+export const Title = styled(MainButtonTitle)`
   color: ${({ theme }) => theme.colors.shape};
-  font-family: ${({ theme }) => theme.fonts.medium};
-  font-size: ${RFValue(15)}px;
 `;
