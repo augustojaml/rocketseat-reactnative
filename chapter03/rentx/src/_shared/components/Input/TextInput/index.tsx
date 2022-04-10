@@ -58,13 +58,13 @@ export function TextInput({
             render={({ field: { onChange, value } }) => {
               return (
                 <CustomInput
+                  {...rest}
                   onChange={onChange}
                   value={value}
                   onFocus={handleOnFocus}
                   onBlur={handleOnBlur}
                   onChangeText={handleCheckIsFilled}
                   placeholderTextColor={theme.colors.primary400}
-                  {...rest}
                 />
               );
             }}

@@ -37,23 +37,15 @@ const schema = YUP.object().shape({
 export function LoginUser() {
   const scrollView = useRef<ScrollView>(null);
   const theme = useTheme();
-
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
+  const { control, handleSubmit } = useForm();
 
   function scrollToTopOnInputFocus() {
     scrollView.current?.scrollTo({ y: 150, animated: true });
-    // console.log(keyboard.keyboardHeight);
   }
 
   function handleFormSubmit(form: Form) {
-    // const inputForm = form as FormData;
-    console.log(errors);
+    const inputForm = form as FormData;
+    console.log(inputForm);
   }
 
   return (
@@ -85,16 +77,16 @@ export function LoginUser() {
               control={control}
               icon={MailSvg}
               name="email"
-              scrollToTopOnInputFocus={scrollToTopOnInputFocus}
               placeholder="E-mail"
+              scrollToTopOnInputFocus={scrollToTopOnInputFocus}
             />
             <TextInput
               control={control}
               icon={LockSvg}
               name="password"
+              placeholder="Senha"
               isPassword
               scrollToTopOnInputFocus={scrollToTopOnInputFocus}
-              placeholder="Senha"
             />
             <Button
               title="Login"

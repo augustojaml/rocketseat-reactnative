@@ -1,3 +1,4 @@
+import { TextInput } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
@@ -28,7 +29,7 @@ export const IconContainer = styled.View`
   border-right-color: ${({ theme }) => theme.colors.background};
 `;
 
-export const CustomInput = styled.TextInput`
+export const CustomInput = styled(TextInput)`
   flex: 1;
   padding: 0 20px;
   font-family: ${({ theme }) => theme.fonts.regular};
@@ -40,7 +41,6 @@ export const IconContainerButton = styled.TouchableOpacity.attrs({
 })`
   width: ${RFValue(50)}px;
   height: ${RFValue(50)}px;
-
   align-items: center;
   justify-content: center;
 `;
