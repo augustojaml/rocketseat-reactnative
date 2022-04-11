@@ -18,7 +18,7 @@ import {
   UserSvg,
 } from '../../../../_shared/utils/images';
 
-import { Container, Form, HeaderWrapper, StepTitle } from './styled';
+import { Container, Form, HeaderWrapper, StepsBullet, StepsContainer, StepTitle } from './styled';
 import { InputText } from '../../../../_shared/components/InputText';
 import { Button } from '../../../../_shared/components/Button';
 import { useNavigation, useRoute } from '@react-navigation/native';
@@ -116,6 +116,10 @@ export function RegisterUserStepTwo() {
             <MainButton onPress={handleNavigationGoBack}>
               <ChevronleftSvg width={RFValue(30)} height={RFValue(30)} />
             </MainButton>
+            <StepsContainer>
+              <StepsBullet />
+              <StepsBullet isActive />
+            </StepsContainer>
           </HeaderWrapper>
         </MainHeader>
         <ScrollView

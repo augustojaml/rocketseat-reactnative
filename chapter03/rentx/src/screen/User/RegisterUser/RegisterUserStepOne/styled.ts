@@ -11,8 +11,27 @@ export const HeaderWrapper = styled.View`
   width: 100%;
   flex-direction: row;
   flex: 1;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: flex-end;
+`;
+
+const stepBulletSize = 8;
+
+interface BulletProps {
+  isActive?: boolean;
+}
+
+export const StepsContainer = styled.View`
+  flex-direction: row;
+`;
+
+export const StepsBullet = styled.View<BulletProps>`
+  background-color: ${({ theme, isActive }) =>
+    isActive ? theme.colors.primary600 : theme.colors.primary400};
+  width: ${stepBulletSize}px;
+  height: ${stepBulletSize}px;
+  border-radius: ${stepBulletSize / 2}px;
+  margin: ${stepBulletSize / 2}px;
 `;
 
 export const StepTitle = styled(MainStepTitle)``;

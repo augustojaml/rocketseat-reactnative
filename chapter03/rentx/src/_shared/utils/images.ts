@@ -19,7 +19,7 @@ import MailSvg from '../images/mail.svg';
 import OkSvg from '../images/ok.svg';
 import OkColorSvg from '../images/ok-colors.svg';
 import PeopleSvg from '../images/people.svg';
-import PowerSvg from '../images/people.svg';
+import PowerSvg from '../images/power.svg';
 import SearchSvg from '../images/search.svg';
 import SettingSvg from '../images/setting.svg';
 import SpeedSvg from '../images/speed.svg';

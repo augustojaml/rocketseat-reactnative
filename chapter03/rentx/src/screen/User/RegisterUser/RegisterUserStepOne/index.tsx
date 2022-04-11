@@ -12,7 +12,7 @@ import { MainButton, MainHeader } from '../../../../_shared/components/styled';
 
 import { ChevronleftSvg, CreditcardSvg, MailSvg, UserSvg } from '../../../../_shared/utils/images';
 
-import { Container, Form, HeaderWrapper, StepTitle } from './styled';
+import { Container, Form, HeaderWrapper, StepsBullet, StepsContainer, StepTitle } from './styled';
 import { InputText } from '../../../../_shared/components/InputText';
 import { Button } from '../../../../_shared/components/Button';
 import { useNavigation } from '@react-navigation/native';
@@ -96,6 +96,10 @@ export function RegisterUserStepOne() {
             <MainButton onPress={handleNavigationGoBack}>
               <ChevronleftSvg width={RFValue(30)} height={RFValue(30)} />
             </MainButton>
+            <StepsContainer>
+              <StepsBullet isActive />
+              <StepsBullet />
+            </StepsContainer>
           </HeaderWrapper>
         </MainHeader>
         <ScrollView
