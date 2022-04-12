@@ -7,7 +7,7 @@
     "android": "expo run:android",
     "ios": "expo run:ios",
     "web": "expo start --web",
-    "api-server": "json-server ./fakeApi/json-server/api.json --host 192.168.100.5 --port 3333 --delay 700"
+    "api-server": "json-server ./fakeApi/json-server/api.json --host 192.168.101.199 --port 3333 --delay 700"
   },
   "dependencies": {
     "@expo-google-fonts/archivo": "^0.2.2",

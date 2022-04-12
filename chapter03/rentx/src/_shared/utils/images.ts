@@ -1,4 +1,5 @@
 import ArrowlongrightSvg from '../images/arrow-long-right.svg';
+import ArrowUpSvg from '../images/arrow-up.svg';
 import CalendarSvg from '../images/calendar.svg';
 import CamSvg from '../images/cam.svg';
 import CarSvg from '../images/car.svg';
@@ -15,6 +16,7 @@ import HybridSvg from '../images/hybrid.svg';
 import LockSvg from '../images/lock.svg';
 import LogolargeSvg from '../images/logo-large.svg';
 import LogoSvg from '../images/logo.svg';
+import LogoTextSvg from '../images/logo-text.svg';
 import MailSvg from '../images/mail.svg';
 import OkSvg from '../images/ok.svg';
 import OkColorSvg from '../images/ok-colors.svg';
@@ -28,6 +30,7 @@ import UserSvg from '../images/user.svg';
 
 export {
   ArrowlongrightSvg,
+  ArrowUpSvg,
   CalendarSvg,
   CamSvg,
   CarSvg,
@@ -44,6 +47,7 @@ export {
   LockSvg,
   LogolargeSvg,
   LogoSvg,
+  LogoTextSvg,
   MailSvg,
   OkSvg,
   OkColorSvg,
@@ -57,7 +61,7 @@ export {
 
 export const carAccessories = {
   speed: SpeedSvg,
-  acceleration: PowerSvg,
+  acceleration: ArrowUpSvg,
   force: PowerSvg,
   gasoline: GasolineSvg,
   exchange: ExchangeSvg,

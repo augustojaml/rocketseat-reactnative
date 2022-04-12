@@ -35,7 +35,7 @@ declare global {
 export function UserStackRoutes() {
   return (
     <>
-      <Navigator initialRouteName={'ProfileUser'} screenOptions={{ headerShown: false }}>
+      <Navigator initialRouteName={'LoginUser'} screenOptions={{ headerShown: false }}>
         <Screen name="LoginUser" component={LoginUser} />
         <Screen name="RegisterUserStepOne" component={RegisterUserStepOne} />
         <Screen name="RegisterUserStepTwo" component={RegisterUserStepTwo} />

@@ -17,6 +17,7 @@ import { Inter_400Regular, Inter_500Medium } from '@expo-google-fonts/inter';
 import AppLoading from 'expo-app-loading';
 import { CustomThemeProvider } from './src/hook/useAppTheme';
 import { Routes } from './src/routes';
+import { CarProvider } from './src/hook/useCar';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -39,7 +40,9 @@ export default function App() {
   return (
     <>
       <CustomThemeProvider>
-        <Routes />
+        <CarProvider>
+          <Routes />
+        </CarProvider>
       </CustomThemeProvider>
     </>
   );

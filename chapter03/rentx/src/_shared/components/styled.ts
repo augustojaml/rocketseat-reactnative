@@ -1,3 +1,4 @@
+import { rgba } from 'polished';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
@@ -47,4 +48,25 @@ export const MainStepTitle = styled.Text`
   font-size: ${RFValue(20)}px;
   font-family: ${({ theme }) => theme.fonts.medium};
   color: ${({ theme }) => theme.colors.primary600};
+`;
+
+export const MainCarLabel = styled.Text`
+  font-size: ${RFValue(10)}px;
+  font-family: ${({ theme }) => theme.fonts.medium};
+  color: ${({ theme }) => theme.colors.primary400};
+`;
+
+export const MainCarTitle = styled.Text`
+  font-size: ${RFValue(15)}px;
+  font-family: ${({ theme }) => theme.fonts.medium};
+  color: ${({ theme }) => theme.colors.primary600};
+`;
+
+export const MainAbsoluteButtonContainer = styled.View`
+  background-color: ${({ theme }) => rgba(theme.colors.shape, 0.5)};
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  padding: 20px;
 `;
