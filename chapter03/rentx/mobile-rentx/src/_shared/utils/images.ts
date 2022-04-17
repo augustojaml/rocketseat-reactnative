@@ -61,13 +61,33 @@ export {
   UserSvg,
 };
 
-export const carAccessories = {
-  speed: SpeedSvg,
-  acceleration: ArrowUpSvg,
-  force: PowerSvg,
-  gasoline: GasolineSvg,
-  exchange: ExchangeSvg,
-  seats: PeopleSvg,
-  electric: ElectricSvg,
-  hybrid: HybridSvg,
-};
+export function getImage(value: string) {
+  switch (value) {
+    case 'speed':
+      return SpeedSvg;
+
+    case 'acceleration':
+      return ArrowUpSvg;
+
+    case 'force':
+      return PowerSvg;
+
+    case 'gasoline':
+      return GasolineSvg;
+
+    case 'exchange':
+      return ExchangeSvg;
+
+    case 'seats':
+      return PeopleSvg;
+
+    case 'electric':
+      return ElectricSvg;
+
+    case 'hybrid':
+      return HybridSvg;
+
+    default:
+      return CarSvg;
+  }
+}

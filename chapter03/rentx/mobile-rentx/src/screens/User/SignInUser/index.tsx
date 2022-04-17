@@ -11,7 +11,7 @@ import { Container } from './styled';
 import { useForm } from 'react-hook-form';
 import { LockSvg, MailSvg } from '../../../_shared/utils/images';
 import { Alert, ScrollView } from 'react-native';
-import { Button } from '../../../_shared/components/button';
+import { Button } from '../../../_shared/components/Button';
 import { useKeyboard } from '@react-native-community/hooks';
 import { useTheme } from 'styled-components';
 import { useNavigation } from '@react-navigation/native';
@@ -94,8 +94,6 @@ export function SignInUser() {
               scrollToTopOnInputFocus={scrollToTopOnInputFocus}
               autoCapitalize="none"
               autoCompleteType="email"
-              keyboardType="email-address"
-              autoCorrect={false}
             />
             <Input
               control={control}

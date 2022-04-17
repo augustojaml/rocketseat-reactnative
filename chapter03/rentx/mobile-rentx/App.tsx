@@ -16,6 +16,7 @@ import {
 } from '@expo-google-fonts/montserrat';
 import AppLoading from 'expo-app-loading';
 import { Routes } from './src/routes';
+import { CarProvider } from './src/_shared/hooks/useCar';
 
 interface IAppProvider {
   children: ReactNode;
@@ -24,7 +25,9 @@ interface IAppProvider {
 function AppProvider({ children }: IAppProvider) {
   return (
     <>
-      <CustomThemeProvider>{children}</CustomThemeProvider>
+      <CustomThemeProvider>
+        <CarProvider>{children}</CarProvider>
+      </CustomThemeProvider>
     </>
   );
 }
