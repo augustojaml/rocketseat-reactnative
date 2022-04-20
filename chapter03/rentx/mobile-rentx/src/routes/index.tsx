@@ -3,6 +3,7 @@ import { IConfirmation } from '../screens/Confirmation';
 import { IUser } from '../_shared/hooks/useAuth';
 import { ICar } from '../_shared/hooks/useCar';
 import { CarStackRoutes } from './car.stack.routes';
+import { UserStackRoutes } from './user.stack.routes';
 
 declare global {
   namespace ReactNavigation {
@@ -25,7 +26,7 @@ export function Routes() {
   return (
     <>
       <NavigationContainer>
-        <CarStackRoutes />
+        <UserStackRoutes />
       </NavigationContainer>
     </>
   );

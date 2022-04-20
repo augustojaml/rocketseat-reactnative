@@ -37,16 +37,16 @@ export function CarDetails() {
         <Slider onPress={handleNavigationGoBack} photos={car.photos} />
         <MainScrollView>
           <CarInfo>
-            <InfoLabel label={car.brand} value={car.model} valueSize={RFValue(25)} />
+            <InfoLabel label={car.brand} value={car.name} valueSize={RFValue(25)} />
             <InfoLabel
-              label="Ao dia"
-              value={`R$ ${car.daily_rate}`}
+              label={car.period}
+              value={`R$ ${car.price}`}
               valueSize={RFValue(25)}
               valueColor={theme.colors.main900}
             />
           </CarInfo>
           <Accessories accessories={car.accessories} />
-          <MainTextRegular size={RFValue(15)}>{car.description}</MainTextRegular>
+          <MainTextRegular size={RFValue(15)}>{car.about}</MainTextRegular>
           <MainSpaceHeight height={RFValue(15)} />
         </MainScrollView>
         <MainAbsoluteButtonContainer background={theme.colors.background}>

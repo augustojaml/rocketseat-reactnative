@@ -6,19 +6,26 @@ interface ICarProvider {
 }
 
 export interface IAccessories {
-  type: string;
+  id: string;
   name: string;
+  type: string;
+}
+
+export interface IPhotos {
+  id: string;
+  photo: string;
 }
 
 export interface ICar {
   id: string;
+  name: string;
   brand: string;
-  model: string;
-  daily_rate: number;
+  period: string;
+  price: number;
   fuel_type: string;
-  description: string;
+  about: string;
   accessories: IAccessories[];
-  photos: String[];
+  photos: IPhotos[];
 }
 
 export interface ICarAppointment {

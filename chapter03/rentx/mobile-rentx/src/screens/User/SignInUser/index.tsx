@@ -15,6 +15,7 @@ import { Button } from '../../../_shared/components/Button';
 import { useKeyboard } from '@react-native-community/hooks';
 import { useTheme } from 'styled-components';
 import { useNavigation } from '@react-navigation/native';
+import { useAuth } from '../../../_shared/hooks/useAuth';
 
 interface Form {
   [x: string]: any;
@@ -31,6 +32,8 @@ export function SignInUser() {
   const theme = useTheme();
   const navigation = useNavigation();
 
+  const { signIn, isLoadingUser } = useAuth();
+
   const {
     control,
     handleSubmit,
@@ -46,13 +49,14 @@ export function SignInUser() {
     ),
   });
 
-  function handleFormSubmit(form: Form) {
+  async function handleFormSubmit(form: Form) {
     try {
       const inputForm = form as FormData;
-      console.log(inputForm);
+      await signIn(inputForm);
       reset();
     } catch (error: any) {
-      Alert.alert(error.message);
+      console.log('##### SignIn', error.message + '#####');
+      Alert.alert('Erro de autenticação');
     }
   }
 
@@ -110,6 +114,7 @@ export function SignInUser() {
               title="Login"
               isActive={watch('email')?.length > 0 && watch('password')?.length > 0}
               onPress={handleSubmit(handleFormSubmit)}
+              isLoading={isLoadingUser}
             />
             <Button
               marginTop={10}

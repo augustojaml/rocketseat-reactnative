@@ -20,17 +20,17 @@ export function CarListItem({ item, ...rest }: CarItemProps) {
     <>
       <Container activeOpacity={0.7} {...rest}>
         <ContentWrapper>
-          <InfoLabel label={item.brand} value={item.model} />
+          <InfoLabel label={item.brand} value={item.name} />
           <InfoWrapper>
             <InfoLabel
-              label="Ao dia"
-              value={String(item.daily_rate)}
+              label={item.period}
+              value={String(item.price)}
               valueColor={theme.colors.main900}
             />
             <ImageSvg fill={theme.colors.primary400} />
           </InfoWrapper>
         </ContentWrapper>
-        <ContentImage source={{ uri: String(item.photos[0]) }} />
+        <ContentImage source={{ uri: String(item.photos[0].photo) }} />
       </Container>
     </>
   );

@@ -72,7 +72,7 @@ export function getImage(value: string) {
     case 'force':
       return PowerSvg;
 
-    case 'gasoline':
+    case 'gasoline_motor':
       return GasolineSvg;
 
     case 'exchange':
@@ -81,10 +81,10 @@ export function getImage(value: string) {
     case 'seats':
       return PeopleSvg;
 
-    case 'electric':
+    case 'electric_motor':
       return ElectricSvg;
 
-    case 'hybrid':
+    case 'hybrid_motor':
       return HybridSvg;
 
     default:

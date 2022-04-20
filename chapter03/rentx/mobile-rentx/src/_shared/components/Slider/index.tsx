@@ -6,19 +6,27 @@ import {
   ScrollView,
   Text,
 } from 'react-native';
+import { IPhotos } from '../../hooks/useCar';
 import { IconButton } from '../IconButton';
 import { BulletContainer, BulletItem, MainHeader } from '../views';
 
 import { Container, HeaderWrapper, ScrollContent, SliderContainer, SliderImage } from './styled';
 
 const images = [
-  'https://www.webmotors.com.br/imagens/prod/347565/CHEVROLET_CORVETTE_6.2_V8_LT1_GASOLINA_GRAND_SPORT_MANUAL_34756514044310568.png?s=fill&w=440&h=330&q=80&t=true',
-  'https://www.webmotors.com.br/imagens/prod/347565/CHEVROLET_CORVETTE_6.2_V8_LT1_GASOLINA_GRAND_SPORT_MANUAL_34756514044601560.png?s=fill&w=440&h=330&q=80&t=true',
-  'https://www.webmotors.com.br/imagens/prod/347565/CHEVROLET_CORVETTE_6.2_V8_LT1_GASOLINA_GRAND_SPORT_MANUAL_34756514044360595.png?s=fill&w=440&h=330&q=80&t=true',
+  {
+    id: '68456b6e-af35-4e3e-b09c-07d1eb11847e',
+    car_id: '49983f6c-a46a-4dfd-a86e-425b8c72e086',
+    photo: 'https://storage.googleapis.com/golden-wind/ignite/react-native/images/9.png',
+  },
+  {
+    id: '84cb7187-dccd-4fbb-850b-2422cb1cd777',
+    car_id: '49983f6c-a46a-4dfd-a86e-425b8c72e086',
+    photo: 'https://storage.googleapis.com/golden-wind/ignite/react-native/images/11.png',
+  },
 ];
 
 interface SliderProps {
-  photos?: String[];
+  photos?: IPhotos[];
   onPress?: () => void;
 }
 
@@ -39,7 +47,7 @@ export function Slider({ photos = images, onPress = () => {} }: SliderProps) {
             <IconButton onPress={onPress} />
             <BulletContainer>
               {photos.map((image, index) => (
-                <BulletItem key={String(index)} isActive={currentIndex === index} />
+                <BulletItem key={image.id} isActive={currentIndex === index} />
               ))}
             </BulletContainer>
           </HeaderWrapper>
@@ -53,10 +61,10 @@ export function Slider({ photos = images, onPress = () => {} }: SliderProps) {
             onMomentumScrollEnd={handleScroll}
           >
             {photos.map((image, index) => (
-              <ScrollContent key={String(index)}>
+              <ScrollContent key={image.id}>
                 <SliderImage
                   source={{
-                    uri: String(image),
+                    uri: String(image.photo),
                   }}
                 />
               </ScrollContent>

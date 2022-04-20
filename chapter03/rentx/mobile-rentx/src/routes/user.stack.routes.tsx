@@ -10,7 +10,7 @@ const { Navigator, Screen } = createNativeStackNavigator();
 export function UserStackRoutes() {
   return (
     <>
-      <Navigator initialRouteName={'ProfileUser'} screenOptions={{ headerShown: false }}>
+      <Navigator initialRouteName={'SignInUser'} screenOptions={{ headerShown: false }}>
         <Screen name="SignInUser" component={SignInUser} />
         <Screen name="RegisterUserStepOne" component={RegisterUserStepOne} />
         <Screen name="RegisterUserStepTwo" component={RegisterUserStepTwo} />

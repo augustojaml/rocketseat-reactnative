@@ -4,7 +4,7 @@ import React, { useEffect, useRef } from 'react';
 import * as YUP from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import { IUser } from '../../../../_shared/hooks/useAuth';
+import { IUser, useAuth } from '../../../../_shared/hooks/useAuth';
 
 import { Container, HeaderWrapper, Title } from './styled';
 import { useForm } from 'react-hook-form';
@@ -44,6 +44,7 @@ export function RegisterUserStepTwo() {
   const navigation = useNavigation();
 
   const { user } = useRoute().params as IRegisterUserStepOneParams;
+  const { signUp, isLoadingUser } = useAuth();
 
   const {
     control,
@@ -54,8 +55,8 @@ export function RegisterUserStepTwo() {
   } = useForm({
     resolver: yupResolver(
       YUP.object().shape({
-        password: YUP.string().required('Nome obrigatório'),
-        confirm_password: YUP.string().required('Nome obrigatório'),
+        password: YUP.string().required('Senha obrigatório'),
+        confirm_password: YUP.string().required('Confirmação obrigatório'),
       })
     ),
   });
@@ -77,7 +78,7 @@ export function RegisterUserStepTwo() {
         password: inputForm.password,
       };
 
-      console.log(data);
+      await signUp(data);
       navigation.navigate('Confirmation', {
         confirmation: {
           title: 'Conta Criada',
@@ -86,7 +87,7 @@ export function RegisterUserStepTwo() {
         },
       });
     } catch (error: any) {
-      Alert.alert(error.message);
+      Alert.alert('SignIn Error: ', error.message);
     }
   }
 
@@ -147,6 +148,12 @@ export function RegisterUserStepTwo() {
               title="Login"
               isActive={watch('password')?.length > 0 && watch('confirm_password')?.length > 0}
               onPress={handleSubmit(handleFormSubmit)}
+              background={
+                watch('password')?.length > 0 && watch('confirm_password')?.length > 0
+                  ? theme.colors.secondary900
+                  : theme.colors.main900
+              }
+              isLoading={isLoadingUser}
             />
           </MainForm>
         </MainScrollView>

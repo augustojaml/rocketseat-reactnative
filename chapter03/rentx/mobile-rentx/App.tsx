@@ -1,6 +1,4 @@
-import React, { ReactNode } from 'react';
-import { SignInUser } from './src/screens/User/SignInUser';
-import { CustomThemeProvider } from './src/_shared/hooks/useAppTheme';
+import React from 'react';
 
 import {
   Archivo_400Regular,
@@ -16,21 +14,7 @@ import {
 } from '@expo-google-fonts/montserrat';
 import AppLoading from 'expo-app-loading';
 import { Routes } from './src/routes';
-import { CarProvider } from './src/_shared/hooks/useCar';
-
-interface IAppProvider {
-  children: ReactNode;
-}
-
-function AppProvider({ children }: IAppProvider) {
-  return (
-    <>
-      <CustomThemeProvider>
-        <CarProvider>{children}</CarProvider>
-      </CustomThemeProvider>
-    </>
-  );
-}
+import { AppProvider } from './src/_shared/hooks';
 
 export default function App() {
   const [fontsLoaded] = useFonts({

@@ -45,7 +45,7 @@ export function RegisterUserStepOne() {
       YUP.object().shape({
         name: YUP.string().required('Nome obrigatório'),
         email: YUP.string().email('E-mail inválido').required('E-mail obrigatório'),
-        drive_license: YUP.string().required('Carteira de motorista obrigatório'),
+        driver_license: YUP.string().required('Carteira de motorista obrigatório'),
       })
     ),
   });
@@ -123,21 +123,21 @@ export function RegisterUserStepOne() {
             <Input
               control={control}
               icon={CreditCardSvg}
-              name="drive_license"
+              name="driver_license"
               placeholder="CNH"
               keyboardType="numeric"
               autoCapitalize="none"
-              isDirth={watch('drive_license')?.length > 0}
+              isDirth={watch('driver_license')?.length > 0}
               scrollToTopOnInputFocus={scrollToTopOnInputFocus}
             />
 
             <Button
               marginTop={20}
-              title="Login"
+              title="Próximo"
               isActive={
                 watch('name')?.length > 0 &&
                 watch('email')?.length > 0 &&
-                watch('drive_license')?.length > 0
+                watch('driver_license')?.length > 0
               }
               onPress={handleSubmit(handleFormSubmit)}
             />
