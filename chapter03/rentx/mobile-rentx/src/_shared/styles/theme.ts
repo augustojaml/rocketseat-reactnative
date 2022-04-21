@@ -1,4 +1,4 @@
-import { rgba } from 'polished';
+import { rgba, lighten } from 'polished';
 
 export const theme = {
   light: {
@@ -8,6 +8,10 @@ export const theme = {
 
       background: '#e6e6e8',
       shape: '#FFFFFF',
+
+      text: '#1B1B1F',
+      placeholders: rgba('#1B1B1F', 0.3),
+      buttonTextColor: '#FFFFFF',
 
       primary400: '#AEAEB3',
       primary500: '#7A7A80',
@@ -31,6 +35,10 @@ export const theme = {
 
       background: '#121214',
       shape: '#202024',
+
+      text: '#9b78ea',
+      placeholders: rgba('#9b78ea', 0.3),
+      buttonTextColor: '#9b78ea',
 
       primary500: '#e6ddf9',
       primary400: '#c0abf2',

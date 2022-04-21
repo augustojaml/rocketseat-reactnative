@@ -66,7 +66,7 @@ export function Input({
             <CustomInput
               onChangeText={onChange}
               value={value}
-              placeholderTextColor={theme.colors.primary400}
+              placeholderTextColor={theme.colors.placeholders}
               onFocus={handleOnFocus}
               onBlur={handleOnBlur}
               secureTextEntry={hidePassword}

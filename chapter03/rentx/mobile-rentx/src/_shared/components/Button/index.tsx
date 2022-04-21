@@ -39,7 +39,9 @@ export function Button({
         {isLoading ? (
           <ActivityIndicator size={RFValue(25)} color={theme.colors.background} />
         ) : (
-          <MainTextRegular color={color ? color : theme.colors.shape}>{title}</MainTextRegular>
+          <MainTextRegular color={color ? color : theme.colors.buttonTextColor}>
+            {title}
+          </MainTextRegular>
         )}
       </Container>
     </>

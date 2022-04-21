@@ -1,1 +1,2 @@
 - Link api = [api](https://github.com/rodrigorgtic/rentx-api-ignite)
+- Link db = [WatermelonDB](https://nozbe.github.io/WatermelonDB/Installation.html)

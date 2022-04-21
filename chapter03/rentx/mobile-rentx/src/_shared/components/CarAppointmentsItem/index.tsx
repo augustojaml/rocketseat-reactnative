@@ -3,7 +3,7 @@ import { TouchableOpacityProps } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { SvgProps } from 'react-native-svg';
 import { useTheme } from 'styled-components';
-import { ICar } from '../../hooks/useCar';
+import { ICar, IScheduledCars } from '../../hooks/useCar';
 import { ArrowShortRight, GasolineSvg, getImage } from '../../utils/images';
 import { MainTextMedium, MainTitleBold } from '../fonts';
 import { InfoLabel } from '../InfoLabel';
@@ -58,38 +58,38 @@ var tempCar = {
 };
 
 interface CarItemProps extends TouchableOpacityProps {
-  item?: ICar;
+  item: IScheduledCars;
 }
 
-export function CarAppointmentsItem({ item = tempCar, ...rest }: CarItemProps) {
+export function CarAppointmentsItem({ item, ...rest }: CarItemProps) {
   const theme = useTheme();
   // @ts-ignore
-  const ImageSvg: FC<SvgProps> = getImage(item.fuel_type);
+  const ImageSvg: FC<SvgProps> = getImage(item.car.fuel_type);
 
   return (
     <>
       <Container activeOpacity={0.7} {...rest}>
         <ContentWrapper>
-          <InfoLabel label={item.brand} value={item.model} />
+          <InfoLabel label={item.car.brand} value={item.car.name} />
           <InfoWrapper>
             <InfoLabel
-              label="Ao dia"
-              value={String(item.daily_rate)}
+              label={item.car.period}
+              value={`R$ ${String(item.car.price)}`}
               valueColor={theme.colors.main900}
             />
             <ImageSvg fill={theme.colors.primary400} />
           </InfoWrapper>
         </ContentWrapper>
-        <ContentImage source={{ uri: String(item.photos[0]) }} />
+        <ContentImage source={{ uri: item.car.thumbnail }} />
       </Container>
       <CarAppointmentsItemDateWrapper>
         <MainTextMedium color={theme.colors.primary400}>Período</MainTextMedium>
         <MainTextMedium size={RFValue(13)} color={theme.colors.primary600}>
-          18/06/2022
+          {item.start_date}
         </MainTextMedium>
         <ArrowShortRight fill={theme.colors.primary400} />
         <MainTextMedium size={RFValue(13)} color={theme.colors.primary600}>
-          18/06/2022
+          {item.end_date}
         </MainTextMedium>
       </CarAppointmentsItemDateWrapper>
     </>

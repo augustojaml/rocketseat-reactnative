@@ -7,20 +7,13 @@ export const Container = styled.View`
   background-color: ${({ theme }) => theme.colors.background};
 `;
 
-export const ProfileHeader = styled.View`
-  padding: ${RFPercentage(5)}px ${RFPercentage(3)}px;
-
-  background-color: ${({ theme }) => theme.colors.primary800};
-  height: ${RFPercentage(25)}px;
-`;
-
 export const HeaderWrapper = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 `;
 
-const profileHeight = 26;
+const profileHeight = 20;
 
 export const ProfileUserPhotoContainer = styled.View`
   width: 100%;

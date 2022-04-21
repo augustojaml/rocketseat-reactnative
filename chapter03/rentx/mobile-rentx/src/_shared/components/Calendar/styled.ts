@@ -31,5 +31,3 @@ export const CalendarContainer = styled.View`
   flex: 1;
   padding: 0 20px;
 `;
-
-export const Title = styled.Text``;

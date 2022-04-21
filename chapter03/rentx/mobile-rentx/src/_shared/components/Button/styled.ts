@@ -1,4 +1,4 @@
-import { rgba } from 'polished';
+import { lighten, rgba } from 'polished';
 import { TouchableOpacityProps } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
@@ -12,7 +12,7 @@ interface ComponentProps extends TouchableOpacityProps {
 export const Container = styled.TouchableOpacity<ComponentProps>`
   width: 100%;
   background-color: ${({ background, isActive }) =>
-    isActive ? background : rgba(background!, 0.7)};
+    isActive ? background : lighten(0.3, background!)};
   height: ${RFValue(56)}px;
   align-items: center;
   justify-content: center;

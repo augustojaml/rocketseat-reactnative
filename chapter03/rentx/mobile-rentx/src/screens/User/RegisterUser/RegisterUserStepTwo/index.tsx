@@ -83,7 +83,7 @@ export function RegisterUserStepTwo() {
         confirmation: {
           title: 'Conta Criada',
           subTitle: '',
-          nextScreen: 'SignInUser',
+          nextScreen: 'CarList',
         },
       });
     } catch (error: any) {

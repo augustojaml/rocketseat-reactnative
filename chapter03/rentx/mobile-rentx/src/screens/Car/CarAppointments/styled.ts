@@ -22,3 +22,9 @@ export const CarAppointmentsInfo = styled.View`
   justify-content: space-between;
   margin: ${RFPercentage(3)}px ${RFPercentage(3)}px ${RFPercentage(1)}px ${RFPercentage(3)}px;
 `;
+
+export const ContentLoading = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;
