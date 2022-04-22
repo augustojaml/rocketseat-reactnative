@@ -1,21 +1,24 @@
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import React, { useCallback, useEffect } from 'react';
-import { ActivityIndicator, FlatList } from 'react-native';
+import { ActivityIndicator, Alert, Button, FlatList } from 'react-native';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import { useTheme } from 'styled-components';
 import { CarListItem } from '../../../_shared/components/CarListItem';
 import { MainTextMedium } from '../../../_shared/components/fonts';
 import { MainHeader, MainSpaceHeight } from '../../../_shared/components/views';
 import { ICar, useCar } from '../../../_shared/hooks/useCar';
-import { useTabs } from '../../../_shared/hooks/useTabs';
 import { LogoTextSvg } from '../../../_shared/utils/images';
 import { Container, ContentLoading, HeaderWrapper } from './styled';
 
+import { useNetInfo } from '@react-native-community/netinfo';
+
 export function CarList() {
   const theme = useTheme();
-  const { cars, loadingCar, isLoadingCars } = useCar();
   const navigation = useNavigation();
+  const netInfo = useNetInfo();
+
+  const { cars, loadingCar, isLoadingCars, offLineSync } = useCar();
 
   function handleNavigationCarDetails(car: ICar) {
     navigation.navigate('CarDetails', { car: car });
@@ -28,12 +31,6 @@ export function CarList() {
       })();
     }, [])
   );
-
-  // useEffect(() => {
-  //   (async () => {
-  //     await loadingCar();
-  //   })();
-  // }, []);
 
   return (
     <>
@@ -49,7 +46,7 @@ export function CarList() {
             )}
           </HeaderWrapper>
         </MainHeader>
-
+        <Button onPress={offLineSync} title="Enviar"></Button>
         {isLoadingCars ? (
           <ContentLoading>
             <ActivityIndicator color={theme.colors.main900} size={RFValue(30)} />

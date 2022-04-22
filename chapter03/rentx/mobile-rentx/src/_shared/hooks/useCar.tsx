@@ -1,6 +1,10 @@
 import { format, parseISO } from 'date-fns';
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
+import { synchronize } from '@nozbe/watermelondb/sync';
+import { database } from '../database';
+
 import { api } from '../services/api';
+import { Car } from '../database/models/Car';
 
 interface ICarProvider {
   children: ReactNode;
@@ -74,6 +78,7 @@ interface ICarContext {
   scheduledCars: IScheduledCars[];
   loadingCar: () => Promise<void>;
   loadingScheduledCars: () => Promise<void>;
+  offLineSync: () => Promise<void>;
 }
 
 const CarContext = createContext({} as ICarContext);
@@ -82,6 +87,7 @@ function CarProvider({ children }: ICarProvider) {
   const [isLoadingCars, setIsLoadingCar] = useState(false);
   const [cars, setCars] = useState<ICar[]>([]);
   const [scheduledCars, setScheduledCars] = useState<IScheduledCars[]>([]);
+  const carsCollection = database.get<Car>('cars');
 
   async function loadingCar() {
     try {
@@ -123,10 +129,47 @@ function CarProvider({ children }: ICarProvider) {
     }
   }
 
+  async function offLineSync() {
+    try {
+      setIsLoadingCar(true);
+      await synchronize({
+        database,
+        pullChanges: async ({ lastPulledAt }) => {
+          const response = await api.get(`cars/sync/pull?lastPulledVersion=${lastPulledAt || 0}`);
+          const { changes, latestVersion } = response.data;
+          return { changes, timestamp: latestVersion };
+        },
+        pushChanges: async ({ changes }) => {
+          const user = changes.users;
+          await api.post('/users/sync', user);
+        },
+      });
+    } catch (error: any) {
+      throw new Error(error.message);
+    } finally {
+      setIsLoadingCar(false);
+    }
+  }
+
+  // useEffect(() => {
+  //   (async () => {
+  //     const cars = await carsCollection.query().fetch();
+  //     console.log(cars);
+  //   })();
+  // }, []);
+
   return (
     <>
       <CarContext.Provider
-        value={{ cars, isLoadingCars, rentCar, scheduledCars, loadingCar, loadingScheduledCars }}
+        value={{
+          cars,
+          isLoadingCars,
+          rentCar,
+          scheduledCars,
+          loadingCar,
+          loadingScheduledCars,
+          offLineSync,
+        }}
       >
         {children}
       </CarContext.Provider>
