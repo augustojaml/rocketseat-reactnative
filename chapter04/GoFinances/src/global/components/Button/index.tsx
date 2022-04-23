@@ -10,14 +10,9 @@ interface Props extends RectButtonProps {
 }
 
 export function Button({ title = 'Button', background, onPress }: Props) {
-  const { colors } = useTheme();
-
   return (
     <>
-      <Container
-        background={background ? background : colors.secondary}
-        onPress={onPress}
-      >
+      <Container background={background} onPress={onPress}>
         <ButtonText>{title}</ButtonText>
       </Container>
     </>

@@ -3,11 +3,12 @@ import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
 interface Props {
-  background: string;
+  background?: string;
 }
 
 export const Container = styled(RectButton)<Props>`
-  background-color: ${({ background }) => background};
+  background-color: ${({ background, theme }) =>
+    background ? background : theme.colors.secondary};
   align-items: center;
   padding: 20px;
   border-radius: 8px;

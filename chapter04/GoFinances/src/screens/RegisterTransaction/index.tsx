@@ -3,13 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import {
-  Alert,
-  Keyboard,
-  KeyboardAvoidingView,
-  Modal,
-  TouchableWithoutFeedback,
-} from 'react-native';
+import { Alert, Keyboard, Modal, TouchableWithoutFeedback } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import uuid from 'react-native-uuid';
 import * as YUP from 'yup';
@@ -75,7 +69,9 @@ export function RegisterTransaction() {
   }
 
   function handleToggleModal() {
-    setShowModal(!showModal);
+    setTimeout(() => {
+      setShowModal(!showModal);
+    }, 1000);
   }
 
   function handleSelectCategory(item: ICategory) {
@@ -175,7 +171,11 @@ export function RegisterTransaction() {
                 />
               </TransactionTypeContainer>
 
-              <CategorySelectButton title={category.name} onPress={handleToggleModal} />
+              <CategorySelectButton
+                testID="category-select-button"
+                title={category.name}
+                onPress={handleToggleModal}
+              />
             </FormInputText>
             <FormFooter>
               <Button title="Salvar" onPress={handleSubmit(handleSaveTransaction)} />
@@ -184,7 +184,7 @@ export function RegisterTransaction() {
         </Container>
       </TouchableWithoutFeedback>
 
-      <Modal visible={showModal}>
+      <Modal testID="modal-showModal" visible={showModal}>
         <GestureHandlerRootView style={{ flex: 1 }}>
           <Header height={80} flexDirection="row" justifyContent="center" alignItems="flex-end">
             <ModalTitle>Selecione uma categoria</ModalTitle>

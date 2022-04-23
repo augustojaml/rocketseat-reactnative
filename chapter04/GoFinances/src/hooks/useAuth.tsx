@@ -55,11 +55,12 @@ function AuthProvider({ children }: IAuthProvider) {
           email: userInfo.email,
           photo: userInfo?.picture,
         };
-
         setUser(userLogged);
         await UserStorage.setData(userLogged);
       }
     } catch (error) {
+      // setUser(undefined);
+      console.log(error);
       throw new Error('error');
     }
   }
