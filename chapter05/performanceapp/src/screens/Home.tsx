@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import {
   ActivityIndicator,
   Button,
@@ -10,23 +10,44 @@ import {
 } from 'react-native';
 import { FriendsList } from '../components/FriendsList';
 
+interface FriendsListProps {
+  id: string;
+  name: string;
+  likes: number;
+  online: string;
+}
+
 export function Home() {
   const [name, setName] = useState('');
   const [friends, setFriends] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  const handleUnfollow = useCallback(() => {
+    console.log('unfollow friend');
+  }, []);
+
   async function handleSearchFriends() {
     setIsLoading(true);
     const fetchData = await fetch(`http://192.168.101.199:3333/friend?q=${name}`);
     const jsonData = await fetchData.json();
-    setFriends(jsonData);
+    const formattedData = jsonData.map((item: FriendsListProps) => {
+      return {
+        id: item.id,
+        name: item.name,
+        likes: item.likes,
+        online: `${String(new Date().getHours()).padStart(2, '0')}:${String(
+          new Date().getMinutes()
+        ).padStart(2, '0')}`,
+      };
+    });
+    setFriends(formattedData);
     setIsLoading(false);
   }
 
   return (
     <>
       <View style={styles.container}>
-        <Text style={styles.title}>Clientes</Text>
+        <Text style={styles.title}>Friends</Text>
         <TextInput style={styles.input} placeholder="Nome do cliente" onChangeText={setName} />
         <Button title="Buscar" onPress={handleSearchFriends} />
 
@@ -35,9 +56,7 @@ export function Home() {
             <Text>Loading</Text>
           </View>
         ) : (
-          <ScrollView style={styles.list}>
-            <FriendsList data={friends} />
-          </ScrollView>
+          <FriendsList data={friends} unfollow={handleUnfollow} />
         )}
       </View>
     </>
