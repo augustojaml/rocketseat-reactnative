@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1046679605836",
+    "project_id": "augustojaml-myshopping",
+    "storage_bucket": "augustojaml-myshopping.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1046679605836:android:eeeb33d717f5ec9b389ae9",
+        "android_client_info": {
+          "package_name": "com.myshopping"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1046679605836-b15t7m76aa7el3jdtlbjl8lgvd62f5ak.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVte2ubzfyYFjjndccTULmevj6_BwKlJY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1046679605836-b15t7m76aa7el3jdtlbjl8lgvd62f5ak.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
