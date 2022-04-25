@@ -111,3 +111,10 @@
   }
   ```
 - [link](https://rnfirebase.io/storage/usage)
+
+# Autenticação
+
+- Clicar na sidebar `Authentication` | primeiros passos
+- Sign-in method | Anônimo | Ativar | Salvar
+- [link](https://rnfirebase.io/auth/usage)
+- [errors](https://firebase.google.com/docs/auth/admin/errors)
