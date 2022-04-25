@@ -42,23 +42,6 @@ export function ShoppingList() {
   // }, []);
 
   // // REALTIME (ATUALIZAÇÃO EM TEMPO REAL)
-  // useEffect(() => {
-  //   const subscribe = firestore()
-  //     .collection('products')
-  //     .onSnapshot((querySnapshot) => {
-  //       const data = querySnapshot.docs.map((doc) => {
-  //         return {
-  //           id: doc.id,
-  //           ...doc.data(),
-  //         };
-  //       }) as ProductProps[];
-  //       setProducts(data);
-  //     });
-
-  //   return () => subscribe();
-  // }, []);
-
-  // // REALTIME (ATUALIZAÇÃO EM TEMPO REAL)
   // // REALIZAR CONSULTAS
   // useEffect(() => {
   //   const subscribe = firestore()
@@ -96,12 +79,50 @@ export function ShoppingList() {
   //   return () => subscribe();
   // }, []);
 
+  // // REALTIME (ATUALIZAÇÃO EM TEMPO REAL)
+  // // ORDENAR CONSULTA
+  // useEffect(() => {
+  //   const subscribe = firestore()
+  //     .collection('products')
+  //     .orderBy('quantity')
+  //     .onSnapshot((querySnapshot) => {
+  //       const data = querySnapshot.docs.map((doc) => {
+  //         return {
+  //           id: doc.id,
+  //           ...doc.data(),
+  //         };
+  //       }) as ProductProps[];
+  //       setProducts(data);
+  //     });
+
+  //   return () => subscribe();
+  // }, []);
+
+  // // REALTIME (ATUALIZAÇÃO EM TEMPO REAL)
+  // // FILTRO
+  // useEffect(() => {
+  //   const subscribe = firestore()
+  //     .collection('products')
+  //     .orderBy('quantity')
+  //     .startAfter(2)
+  //     .endAt(3)
+  //     .onSnapshot((querySnapshot) => {
+  //       const data = querySnapshot.docs.map((doc) => {
+  //         return {
+  //           id: doc.id,
+  //           ...doc.data(),
+  //         };
+  //       }) as ProductProps[];
+  //       setProducts(data);
+  //     });
+
+  //   return () => subscribe();
+  // }, []);
+
   // REALTIME (ATUALIZAÇÃO EM TEMPO REAL)
-  // ORDENAR CONSULTA
   useEffect(() => {
     const subscribe = firestore()
       .collection('products')
-      .limit(1)
       .onSnapshot((querySnapshot) => {
         const data = querySnapshot.docs.map((doc) => {
           return {

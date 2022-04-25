@@ -85,3 +85,29 @@
 # Consultar vários documentos
 
 - Ver arquivo [myshopping] `src/components/ShoppingList`
+
+# Atualizar e deletar documento
+
+- ver arquivo [myshopping] `src/components/Product`
+
+# Capacidade Offline
+
+# Emulador do firebase
+
+- [link](https://rnfirebase.io/firestore/emulator)
+
+# Cloud Store
+
+- Ativando o cloud store | sidebar | storage
+- Alterar rules
+  ```json
+  rules_version = '2';
+  service firebase.storage {
+    match /b/{bucket}/o {
+      match /{allPaths=**} {
+        allow read, write
+      }
+    }
+  }
+  ```
+- [link](https://rnfirebase.io/storage/usage)
