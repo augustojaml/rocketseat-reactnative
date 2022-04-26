@@ -9,6 +9,7 @@ import theme from '@global/theme';
 import { SignIn } from '@screens/SignIn';
 import { AuhProvider } from '@hooks/useAuth';
 import { StatusBar } from 'expo-status-bar';
+import { Product } from '@screens/Product';
 
 interface IProviders {
   children: ReactNode;
@@ -38,7 +39,7 @@ export default function App() {
   return (
     <>
       <Providers>
-        <SignIn />
+        <Product />
       </Providers>
     </>
   );

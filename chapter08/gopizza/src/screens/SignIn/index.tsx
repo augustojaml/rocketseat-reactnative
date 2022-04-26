@@ -17,12 +17,16 @@ import brandImg from '@assets/brand.png';
 import { useAuth } from '@hooks/useAuth';
 
 export function SignIn() {
-  const { signIn, isAuthLoading } = useAuth();
+  const { signIn, forgotPassword, isAuthLoading } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   async function handleSign() {
     await signIn({ email, password });
+  }
+
+  async function handleForgotPassword() {
+    await forgotPassword(email);
   }
 
   return (
@@ -48,7 +52,7 @@ export function SignIn() {
               onChangeText={setPassword}
             />
 
-            <ForgotPasswordButton onPress={() => {}}>
+            <ForgotPasswordButton onPress={handleForgotPassword}>
               <ForgotPasswordLabel>Esqueci minha senha</ForgotPasswordLabel>
             </ForgotPasswordButton>
 
