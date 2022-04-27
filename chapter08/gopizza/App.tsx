@@ -6,10 +6,9 @@ import { DMSerifDisplay_400Regular } from '@expo-google-fonts/dm-serif-display';
 import { ThemeProvider } from 'styled-components';
 
 import theme from '@global/theme';
-import { SignIn } from '@screens/SignIn';
 import { AuhProvider } from '@hooks/useAuth';
 import { StatusBar } from 'expo-status-bar';
-import { Product } from '@screens/Product';
+import { Routes } from './src/routes';
 
 interface IProviders {
   children: ReactNode;
@@ -39,7 +38,7 @@ export default function App() {
   return (
     <>
       <Providers>
-        <Product />
+        <Routes />
       </Providers>
     </>
   );
