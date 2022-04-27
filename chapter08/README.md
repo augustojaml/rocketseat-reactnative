@@ -208,3 +208,32 @@ expo install react-native-gesture-handler
   - Clique em Users e adicione dois usuários(email, senha)
   - Siderbar Firestore Database | Criar Banco | Mode de Teste | Avança | Ativar
   - Clique em iniciar coleção | users | próximo
+  - Para cadastro pego os código dos usuários e insira código, isAdmin e Name
+
+- AsyncStorage
+
+  - [link](https://docs.expo.dev/versions/latest/sdk/async-storage/)
+
+  ```bash
+  expo install @react-native-async-storage/async-storage
+  ```
+
+- ImagePicker
+
+  - [link](https://docs.expo.dev/versions/latest/sdk/imagepicker/)
+
+  ```bash
+  expo install expo-image-picker
+  ```
+
+- React Navigation
+
+  - [Link](https://reactnavigation.org/)
+
+  ```bash
+  yarn add @react-navigation/native @react-navigation/native-stack && expo install react-native-screens react-native-safe-area-context
+  ```
+
+  ```bash
+  yarn add @react-navigation/bottom-tabs
+  ```
