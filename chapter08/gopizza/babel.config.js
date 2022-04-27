@@ -11,6 +11,7 @@ module.exports = function (api) {
           alias: {
             '@global': './src/global',
             '@hooks': './src/hooks',
+            '@routes': './src/routes',
             '@components': './src/components',
             '@screens': './src/screens',
             '@assets': './src/assets',

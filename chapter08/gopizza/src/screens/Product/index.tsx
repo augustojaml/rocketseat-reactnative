@@ -128,8 +128,6 @@ export function Product() {
           .delete()
           .then(() => navigation.navigate('home'));
       });
-
-    // console.log(123);
   }
 
   function handleGoBack() {

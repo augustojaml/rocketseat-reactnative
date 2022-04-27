@@ -9,6 +9,8 @@ import theme from '@global/theme';
 import { AuhProvider } from '@hooks/useAuth';
 import { StatusBar } from 'expo-status-bar';
 import { Routes } from './src/routes';
+import { Order } from '@screens/Order';
+import { Orders } from '@screens/Orders';
 
 interface IProviders {
   children: ReactNode;

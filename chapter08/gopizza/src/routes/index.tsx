@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import { SignIn } from '@screens/SignIn';
 import { UserStackRoutes } from './user.stack.routes';
+import { useAuth } from '@hooks/useAuth';
 
 export type ProductNavigationProps = {
   id?: string;
@@ -24,9 +25,7 @@ declare global {
 }
 
 export function Routes() {
-  return (
-    <NavigationContainer>
-      <UserStackRoutes />
-    </NavigationContainer>
-  );
+  const { user } = useAuth();
+
+  return <NavigationContainer>{user ? <UserStackRoutes /> : <SignIn />}</NavigationContainer>;
 }

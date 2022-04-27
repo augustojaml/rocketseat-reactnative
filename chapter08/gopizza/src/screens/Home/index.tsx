@@ -23,11 +23,12 @@ import { Search } from '@components/Search';
 import { ProductCard, ProductProps } from '@components/ProductCard';
 import { Alert, FlatList } from 'react-native';
 import { useFocusEffect, useNavigation, useRoute } from '@react-navigation/native';
-import { ProductNavigationProps } from 'src/routes';
+import { useAuth } from '@hooks/useAuth';
 
 export function Home() {
   const theme = useTheme();
   const navigation = useNavigation();
+  const { signOut, user } = useAuth();
 
   const [pizzas, setPizzas] = useState<ProductProps[]>([]);
   const [search, setSearch] = useState('');
@@ -64,7 +65,8 @@ export function Home() {
   }
 
   function handleOpen(id: string) {
-    navigation.navigate('product', { id });
+    const screen = user?.isAdmin ? 'product' : 'order';
+    navigation.navigate(screen, { id });
   }
 
   function handleAdd() {
@@ -83,9 +85,9 @@ export function Home() {
         <Header>
           <Greeting>
             <GreetingEmoji source={happyEmoji} />
-            <GreetingText>Ola, Admin</GreetingText>
+            <GreetingText>Ola, {user?.name}</GreetingText>
           </Greeting>
-          <SignOutButton>
+          <SignOutButton onPress={signOut}>
             <MaterialIcons name="logout" color={theme.COLORS.TITLE} size={24} />
           </SignOutButton>
         </Header>
@@ -114,7 +116,9 @@ export function Home() {
           }}
         />
 
-        <NewProductButton title="Cadastrar Pizza" type="secondary" onPress={handleAdd} />
+        {user?.isAdmin && (
+          <NewProductButton title="Cadastrar Pizza" type="secondary" onPress={handleAdd} />
+        )}
       </Container>
     </>
   );
