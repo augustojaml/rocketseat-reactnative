@@ -1,9 +1,14 @@
+import { rgba } from 'polished';
 import { TextInput } from 'react-native';
 import { RFValue, RFPercentage } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
 interface ContainerProps {
   isFocused?: boolean;
+}
+
+interface textInputProps {
+  noEditable?: boolean;
 }
 
 export const Container = styled.View<ContainerProps>`
@@ -31,11 +36,13 @@ export const IconContainer = styled.View`
   border-right-color: ${({ theme }) => theme.colors.background};
 `;
 
-export const CustomInput = styled(TextInput)`
+export const CustomInput = styled(TextInput)<textInputProps>`
   flex: 1;
   padding: 0 20px;
   font-family: ${({ theme }) => theme.fonts.regular};
   font-size: ${RFValue(15)}px;
+  color: ${({ theme, noEditable }) =>
+    noEditable ? rgba(theme.colors.primary800, 0.3) : theme.colors.primary800};
 `;
 
 export const ButtonIconContainer = styled.TouchableOpacity`

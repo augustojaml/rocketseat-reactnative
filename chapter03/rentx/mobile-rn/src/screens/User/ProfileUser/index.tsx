@@ -61,9 +61,7 @@ export function ProfileUser() {
   const navigation = useNavigation();
   const { signOut, user, updateUser, updateAvatarFile, isLoadingUser } = useAuth();
 
-  const [avatar, setAvatar] = useState<string | undefined>(
-    `${api.defaults.baseURL}/avatar/${user?.avatar}`
-  );
+  const [avatar, setAvatar] = useState<string | undefined>(user?.avatar);
 
   const [formActive, setFormActive] = useState<'data' | 'pass'>('data');
 
@@ -254,6 +252,7 @@ export function ProfileUser() {
                     autoCorrect={false}
                     editable={false}
                     isDirth={watch('email')?.length > 0}
+                    noEditable={true}
                     scrollToTopOnInputFocus={scrollToTopOnInputFocus}
                   />
                   <Input

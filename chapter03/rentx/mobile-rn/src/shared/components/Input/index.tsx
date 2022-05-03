@@ -15,6 +15,7 @@ interface InputProps extends TextInputProps {
   icon?: FC<SvgProps>;
   isPassword?: boolean;
   isDirth?: boolean;
+  noEditable?: boolean;
   scrollToTopOnInputFocus?: () => void;
 }
 
@@ -24,6 +25,7 @@ export function Input({
   icon: Icon = PeopleSvg,
   isPassword = false,
   isDirth = false,
+  noEditable = false,
   scrollToTopOnInputFocus = () => {},
   ...rest
 }: InputProps) {
@@ -70,6 +72,7 @@ export function Input({
               onFocus={handleOnFocus}
               onBlur={handleOnBlur}
               secureTextEntry={hidePassword}
+              noEditable={noEditable}
               {...rest}
             />
           )}

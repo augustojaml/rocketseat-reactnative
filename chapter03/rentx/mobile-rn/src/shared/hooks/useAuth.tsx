@@ -1,4 +1,6 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
+import { database } from '../database';
+import { User } from '../database/models/users/User';
 import { api } from '../services/api';
 
 interface IAuthProvider {
@@ -12,6 +14,11 @@ export interface IUser {
   driverLicense: string;
   password: string;
   avatar?: string | undefined;
+  token: string;
+}
+
+interface IUserResponse {
+  user: IUser;
   token: string;
 }
 
@@ -44,6 +51,7 @@ const AuthContext = createContext({} as IAuthContext);
 function AuthProvider({ children }: IAuthProvider) {
   const [user, setUser] = useState<IUser | undefined>();
   const [isLoadingUser, setIsLoadingUser] = useState(false);
+  const usersCollection = database.get<User>('users');
 
   async function register(user: IUser) {
     try {
@@ -62,8 +70,23 @@ function AuthProvider({ children }: IAuthProvider) {
       const { data } = await api.post('/users/auth', credentials);
       const { token, user } = data;
       api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-      setUser({ ...user, token: token });
+
+      // WatermelonDB
+
+      await database.write(async () => {
+        await usersCollection.create((newUser) => {
+          newUser.userId = user.id;
+          newUser.name = user.name;
+          newUser.email = user.email;
+          newUser.driverLicense = user.driverLicense;
+          newUser.avatar = `${api.defaults.baseURL}/avatar/${user?.avatar}`;
+          newUser.token = token;
+        });
+      });
+
+      setUser({ ...user, token: token, avatar: `${api.defaults.baseURL}/avatar/${user?.avatar}` });
     } catch (error: any) {
+      console.log(error);
       throw new Error(error);
     } finally {
       setIsLoadingUser(false);
@@ -107,7 +130,7 @@ function AuthProvider({ children }: IAuthProvider) {
       const response = await api.patch('/users/avatar', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
         transformRequest: (data, headers) => {
-          return formData; // this is doing the trick
+          return formData;
         },
       });
       setUser({ ...user, avatar: response.data } as IUser);
@@ -119,11 +142,25 @@ function AuthProvider({ children }: IAuthProvider) {
   }
 
   async function signOut() {
-    api.defaults.headers.common['Authorization'] = '';
-    setUser(undefined);
+    await database.write(async () => {
+      const findUser = usersCollection.find(user!.id!);
+      await (await findUser).destroyPermanently();
+      api.defaults.headers.common['Authorization'] = '';
+      setUser(undefined);
+    });
   }
 
-  useEffect(() => {}, [user]);
+  useEffect(() => {
+    (async () => {
+      const response = await usersCollection.query().fetch();
+      if (response.length > 0) {
+        const user = response[0]._raw as unknown as IUser;
+        api.defaults.headers.common['Authorization'] = `Bearer ${user.token}`;
+        setUser(user);
+        setIsLoadingUser(false);
+      }
+    })();
+  }, [user]);
 
   return (
     <>

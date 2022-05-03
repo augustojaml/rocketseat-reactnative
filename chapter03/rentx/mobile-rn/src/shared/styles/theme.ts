@@ -2,7 +2,7 @@ import { rgba } from 'polished';
 
 export const theme = {
   light: {
-    name: 'dark',
+    name: 'light',
     colors: {
       main900: '#DC1637',
 

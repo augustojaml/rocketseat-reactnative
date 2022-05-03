@@ -1,4 +1,4 @@
-#Mon May 02 22:43:19 BRT 2022
+#Tue May 03 01:07:05 BRT 2022
 path.4=classes_1.dex
 path.3=classes_0.dex
 path.2=classes2.dex
@@ -19,9 +19,11 @@ base.8=/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03
 base.7=/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_12.dex
 base.6=/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_11.dex
 base.5=/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_10.dex
+renamed.18=classes19.dex
 renamed.17=classes18.dex
 renamed.9=classes10.dex
 renamed.16=classes17.dex
+path.18=classes_15.dex
 renamed.8=classes9.dex
 renamed.15=classes16.dex
 renamed.14=classes15.dex
@@ -33,6 +35,7 @@ base.17=/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter0
 base.16=/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_8.dex
 base.15=/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_7.dex
 base.14=/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_6.dex
+base.18=/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_15.dex
 renamed.3=classes4.dex
 path.12=classes_4.dex
 renamed.2=classes3.dex

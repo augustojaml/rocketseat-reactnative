@@ -7,7 +7,7 @@ import { MainForm, MainHeader, MainScrollView } from '../../../shared/components
 import * as YUP from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import { Container } from './styled';
+import { Container, ToggleContainer } from './styled';
 import { useForm } from 'react-hook-form';
 import { LockSvg, MailSvg } from '../../../shared/utils/images';
 import { Alert, ScrollView } from 'react-native';
@@ -16,6 +16,7 @@ import { useKeyboard } from '@react-native-community/hooks';
 import { useTheme } from 'styled-components';
 import { useNavigation } from '@react-navigation/native';
 import { useAuth } from '../../../shared/hooks/useAuth';
+import { ToggleTheme } from '../../../shared/components/ToggleTheme';
 
 interface Form {
   [x: string]: any;
@@ -84,6 +85,9 @@ export function SignInUser() {
   return (
     <>
       <Container>
+        <ToggleContainer>
+          <ToggleTheme />
+        </ToggleContainer>
         <StatusBar translucent style="dark" />
         <MainHeader />
         <MainScrollView ref={scrollView}>

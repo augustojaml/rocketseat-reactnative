@@ -13,6 +13,8 @@ import java.util.ArrayList;
 
 // @nozbe/watermelondb
 import com.nozbe.watermelondb.WatermelonDBPackage;
+// @react-native-async-storage/async-storage
+import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 // expo
 import expo.modules.ExpoModulesPackage;
 // react-native-image-picker
@@ -69,6 +71,7 @@ public class PackageList {
     return new ArrayList<>(Arrays.<ReactPackage>asList(
       new MainReactPackage(mConfig),
       new WatermelonDBPackage(),
+      new AsyncStoragePackage(),
       new ExpoModulesPackage(),
       new ImagePickerPackage(),
       new SafeAreaContextPackage(),

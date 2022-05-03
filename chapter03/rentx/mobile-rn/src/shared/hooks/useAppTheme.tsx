@@ -1,6 +1,7 @@
-import { createContext, ReactNode, useContext, useState } from 'react';
+import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../styles/theme';
+import { appThemeStorage } from '../utils/appThemeStorage';
 
 interface IChildrenNode {
   children: ReactNode;
@@ -18,7 +19,24 @@ function AppThemeProvider({ children }: IChildrenNode) {
 
   async function toggleTheme() {
     appTheme === theme.dark ? setAppTheme(theme.light) : setAppTheme(theme.dark);
+    await appThemeStorage.setData(appTheme.name);
   }
+
+  useEffect(() => {
+    (async () => {
+      const currentTheme = await appThemeStorage.getData();
+
+      if (currentTheme === undefined || currentTheme === 'light') {
+        setAppTheme(theme.dark);
+        return;
+      }
+
+      if (currentTheme === 'dark') {
+        setAppTheme(theme.light);
+        return;
+      }
+    })();
+  }, [appTheme]);
 
   return (
     <>

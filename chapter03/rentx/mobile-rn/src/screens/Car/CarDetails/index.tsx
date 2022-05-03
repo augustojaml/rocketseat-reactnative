@@ -41,7 +41,11 @@ export function CarDetails() {
   return (
     <>
       <Container>
-        <StatusBar translucent style="dark" backgroundColor={theme.colors.background} />
+        <StatusBar
+          translucent
+          style={theme.name === 'dark' ? 'light' : 'dark'}
+          backgroundColor={theme.colors.background}
+        />
         <Slider onPress={handleNavigationGoBack} photos={car.photos ? car.photos : singlePhotos} />
         <MainScrollView>
           <CarInfo>
