@@ -1,0 +1,207 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.mobilerentx"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+9        android:targetSdkVersion="30" />
+10
+11    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+11-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:5:3-75
+11-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:5:20-73
+12    <uses-permission android:name="android.permission.INTERNET" />
+12-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:3:3-64
+12-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:3:20-62
+13    <uses-permission android:name="android.permission.VIBRATE" /> <!-- These require runtime permissions on M -->
+13-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:6:3-63
+13-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:6:20-61
+14    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+14-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:8:3-77
+14-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:8:20-75
+15    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- END OPTIONAL PERMISSIONS -->
+15-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:9:3-78
+15-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:9:20-76
+16    <queries>
+16-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:12:3-19:13
+17
+18        <!-- Support checking for http(s) links via the Linking API -->
+19        <intent>
+19-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:14:5-18:14
+20            <action android:name="android.intent.action.VIEW" />
+20-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:15:7-59
+20-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:15:15-56
+21
+22            <category android:name="android.intent.category.BROWSABLE" />
+22-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:16:7-68
+22-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:16:17-65
+23
+24            <data android:scheme="https" />
+24-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:17:7-38
+24-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:17:13-35
+25        </intent>
+26        <!-- Query open documents -->
+27        <intent>
+27-->[:expo-file-system] /home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:19:9-21:18
+28            <action android:name="android.intent.action.OPEN_DOCUMENT_TREE" />
+28-->[:expo-file-system] /home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:20:13-79
+28-->[:expo-file-system] /home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:20:21-76
+29        </intent>
+30        <intent>
+30-->[:expo-image-picker] /home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/node_modules/expo-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:18:9-22:18
+31
+32            <!-- Required for picking images from the camera roll if targeting API 30 -->
+33            <action android:name="android.media.action.IMAGE_CAPTURE" />
+33-->[:expo-image-picker] /home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/node_modules/expo-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:21:13-73
+33-->[:expo-image-picker] /home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/node_modules/expo-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:21:21-70
+34        </intent>
+35        <intent>
+35-->[:expo-image-picker] /home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/node_modules/expo-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:23:9-27:18
+36
+37            <!-- Required for picking images from the camera if targeting API 30 -->
+38            <action android:name="android.media.action.ACTION_VIDEO_CAPTURE" />
+38-->[:expo-image-picker] /home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/node_modules/expo-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:26:13-80
+38-->[:expo-image-picker] /home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/node_modules/expo-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:26:21-77
+39        </intent>
+40    </queries>
+41
+42    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- Required for picking images from camera directly -->
+42-->[com.facebook.flipper:flipper:0.54.0] /home/augustojaml/.gradle/caches/transforms-3/62ece1a98ef095db320a1cbbfb42e6fd/transformed/jetified-flipper-0.54.0/AndroidManifest.xml:16:5-76
+42-->[com.facebook.flipper:flipper:0.54.0] /home/augustojaml/.gradle/caches/transforms-3/62ece1a98ef095db320a1cbbfb42e6fd/transformed/jetified-flipper-0.54.0/AndroidManifest.xml:16:22-73
+43    <uses-permission android:name="android.permission.CAMERA" />
+43-->[:expo-image-picker] /home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/node_modules/expo-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:11:5-65
+43-->[:expo-image-picker] /home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/node_modules/expo-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:11:22-62
+44    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+44-->[com.android.installreferrer:installreferrer:1.0] /home/augustojaml/.gradle/caches/transforms-3/96f038cbf90629031e71ded81ca6077d/transformed/jetified-installreferrer-1.0/AndroidManifest.xml:9:5-110
+44-->[com.android.installreferrer:installreferrer:1.0] /home/augustojaml/.gradle/caches/transforms-3/96f038cbf90629031e71ded81ca6077d/transformed/jetified-installreferrer-1.0/AndroidManifest.xml:9:22-107
+45
+46    <application
+46-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:21:3-31:17
+47        android:name="com.mobilerentx.MainApplication"
+47-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:21:16-47
+48        android:allowBackup="false"
+48-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:21:162-189
+49        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+49-->[androidx.core:core:1.3.1] /home/augustojaml/.gradle/caches/transforms-3/b8a588cea3c1ea044bbdaf78204da0de/transformed/core-1.3.1/AndroidManifest.xml:24:18-86
+50        android:debuggable="true"
+51        android:icon="@mipmap/ic_launcher"
+51-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:21:81-115
+52        android:label="@string/app_name"
+52-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:21:48-80
+53        android:roundIcon="@mipmap/ic_launcher_round"
+53-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:21:116-161
+54        android:theme="@style/AppTheme"
+54-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:21:190-221
+55        android:usesCleartextTraffic="true" >
+55-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:21:222-257
+56        <meta-data
+56-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:22:5-103
+57            android:name="expo.modules.updates.EXPO_UPDATE_URL"
+57-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:22:16-67
+58            android:value="YOUR-APP-URL-HERE" />
+58-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:22:68-101
+59        <meta-data
+59-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:23:5-112
+60            android:name="expo.modules.updates.EXPO_SDK_VERSION"
+60-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:23:16-68
+61            android:value="YOUR-APP-SDK-VERSION-HERE" />
+61-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:23:69-110
+62
+63        <activity
+63-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:24:5-29:16
+64            android:name="com.mobilerentx.MainActivity"
+64-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:24:15-43
+65            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
+65-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:24:77-154
+66            android:label="@string/app_name"
+66-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:24:44-76
+67            android:launchMode="singleTask"
+67-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:24:155-186
+68            android:theme="@style/Theme.App.SplashScreen"
+68-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:24:230-275
+69            android:windowSoftInputMode="adjustResize" >
+69-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:24:187-229
+70            <intent-filter>
+70-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:25:7-28:23
+71                <action android:name="android.intent.action.MAIN" />
+71-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:26:9-60
+71-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:26:17-58
+72
+73                <category android:name="android.intent.category.LAUNCHER" />
+73-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:27:9-68
+73-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:27:19-66
+74            </intent-filter>
+75        </activity>
+76        <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
+76-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:30:5-81
+76-->/home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/android/app/src/main/AndroidManifest.xml:30:15-79
+77
+78        <provider
+78-->[:react-native-image-picker] /home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/node_modules/react-native-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:12:9-20:20
+79            android:name="com.imagepicker.ImagePickerProvider"
+79-->[:react-native-image-picker] /home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/node_modules/react-native-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:13:13-63
+80            android:authorities="com.mobilerentx.imagepickerprovider"
+80-->[:react-native-image-picker] /home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/node_modules/react-native-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:14:13-71
+81            android:exported="false"
+81-->[:react-native-image-picker] /home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/node_modules/react-native-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:15:13-37
+82            android:grantUriPermissions="true" >
+82-->[:react-native-image-picker] /home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/node_modules/react-native-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:16:13-47
+83            <meta-data
+83-->[:react-native-image-picker] /home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/node_modules/react-native-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:17:13-19:70
+84                android:name="android.support.FILE_PROVIDER_PATHS"
+84-->[:react-native-image-picker] /home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/node_modules/react-native-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:18:17-67
+85                android:resource="@xml/imagepicker_provider_paths" />
+85-->[:react-native-image-picker] /home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/node_modules/react-native-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:19:17-67
+86        </provider>
+87        <provider
+87-->[:expo-file-system] /home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:25:9-34:20
+88            android:name="expo.modules.filesystem.FileSystemFileProvider"
+88-->[:expo-file-system] /home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:26:13-74
+89            android:authorities="com.mobilerentx.FileSystemFileProvider"
+89-->[:expo-file-system] /home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:27:13-74
+90            android:exported="false"
+90-->[:expo-file-system] /home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:28:13-37
+91            android:grantUriPermissions="true" >
+91-->[:expo-file-system] /home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:29:13-47
+92            <meta-data
+92-->[:react-native-image-picker] /home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/node_modules/react-native-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:17:13-19:70
+93                android:name="android.support.FILE_PROVIDER_PATHS"
+93-->[:react-native-image-picker] /home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/node_modules/react-native-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:18:17-67
+94                android:resource="@xml/file_system_provider_paths" />
+94-->[:react-native-image-picker] /home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/node_modules/react-native-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:19:17-67
+95        </provider>
+96
+97        <activity
+97-->[:expo-image-picker] /home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/node_modules/expo-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:31:9-33:59
+98            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+98-->[:expo-image-picker] /home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/node_modules/expo-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:32:13-76
+99            android:theme="@style/Base.Theme.AppCompat" /> <!-- https://developer.android.com/guide/topics/manifest/provider-element.html -->
+99-->[:expo-image-picker] /home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/node_modules/expo-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:33:13-56
+100        <provider
+100-->[:expo-image-picker] /home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/node_modules/expo-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:35:9-43:20
+101            android:name="expo.modules.imagepicker.ImagePickerFileProvider"
+101-->[:expo-image-picker] /home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/node_modules/expo-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:36:13-76
+102            android:authorities="com.mobilerentx.ImagePickerFileProvider"
+102-->[:expo-image-picker] /home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/node_modules/expo-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:37:13-75
+103            android:exported="false"
+103-->[:expo-image-picker] /home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/node_modules/expo-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:38:13-37
+104            android:grantUriPermissions="true" >
+104-->[:expo-image-picker] /home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/node_modules/expo-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:39:13-47
+105            <meta-data
+105-->[:react-native-image-picker] /home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/node_modules/react-native-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:17:13-19:70
+106                android:name="android.support.FILE_PROVIDER_PATHS"
+106-->[:react-native-image-picker] /home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/node_modules/react-native-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:18:17-67
+107                android:resource="@xml/image_picker_provider_paths" />
+107-->[:react-native-image-picker] /home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/node_modules/react-native-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:19:17-67
+108        </provider>
+109
+110        <meta-data
+110-->[:expo-modules-core] /home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/node_modules/expo-modules-core/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:12:9-14:89
+111            android:name="org.unimodules.core.AppLoader#react-native-headless"
+111-->[:expo-modules-core] /home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/node_modules/expo-modules-core/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:13:13-79
+112            android:value="expo.modules.adapters.react.apploader.RNHeadlessAppLoader" />
+112-->[:expo-modules-core] /home/augustojaml/Devops/projects/github/rocketseat-reactnative/chapter03/rentx/mobile-rn/node_modules/expo-modules-core/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:14:13-86
+113    </application>
+114
+115</manifest>

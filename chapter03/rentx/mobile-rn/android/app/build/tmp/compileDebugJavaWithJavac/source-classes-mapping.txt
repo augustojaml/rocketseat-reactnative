@@ -1,0 +1,14 @@
+com/mobilerentx/BuildConfig.java
+ com.mobilerentx.BuildConfig
+com/mobilerentx/MainApplication.java
+ com.mobilerentx.MainApplication
+ com.mobilerentx.MainApplication$1
+com/mobilerentx/ReactNativeFlipper.java
+ com.mobilerentx.ReactNativeFlipper
+ com.mobilerentx.ReactNativeFlipper$1
+ com.mobilerentx.ReactNativeFlipper$2
+ com.mobilerentx.ReactNativeFlipper$2$1
+com/mobilerentx/MainActivity.java
+ com.mobilerentx.MainActivity
+com/facebook/react/PackageList.java
+ com.facebook.react.PackageList

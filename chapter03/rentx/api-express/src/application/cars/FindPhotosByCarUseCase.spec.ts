@@ -2,6 +2,7 @@ import { AppError } from '@shared/infra/http/middlewares/AppError';
 import { FakeStorageProvider } from '@test/providers/StorageProviders/FakeStorageProvider';
 import { CarsInMemoryRepository } from '@test/repositories/CarsInMemoryRepository';
 import { PhotosInMemoryRepository } from '@test/repositories/PhotosInMemoryRepository';
+import { executionAsyncId } from 'async_hooks';
 import { CreateCarsUseCase } from './CreateCarsUseCase';
 import { CreatePhotosUseCase } from './CreatePhotosUseCase';
 import { FindPhotosByCarUseCase } from './FindPhotosByCarUseCase';
