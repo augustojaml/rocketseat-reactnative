@@ -1,0 +1,86 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Users {
+  id            String    @id
+  name          String    @unique
+  email         String
+  driverLicense String
+  password      String
+  avatar        String?
+  rentals       Rentals[]
+  createdAt     DateTime?
+  updatedAt     DateTime  @default(now()) @updatedAt
+
+
+
+
+  @@map("users")
+}
+
+model Cars {
+  id           String        @id
+  name         String
+  brand        String
+  about        String
+  period       String
+  price        Decimal
+  fuelType     String
+  licensePlate String        @unique
+  available    Boolean       @default(true)
+  thumbnail    String?
+  accessories  Accessories[]
+  photos       Photos[]
+  rentals      Rentals[]
+  createdAt    DateTime?
+  updatedAt    DateTime      @default(now()) @updatedAt
+
+  @@map("cars")
+}
+
+model Accessories {
+  id        String    @id
+  type      String
+  name      String
+  carId     String
+  car       Cars      @relation(fields: [carId], references: [id])
+  createdAt DateTime?
+  updatedAt DateTime  @default(now()) @updatedAt
+
+  @@map("accessories")
+}
+
+model Photos {
+  id        String    @id
+  carId     String
+  car       Cars      @relation(fields: [carId], references: [id])
+  photo     String
+  createdAt DateTime?
+  updatedAt DateTime  @default(now()) @updatedAt
+
+  @@map("photos")
+}
+
+model Rentals {
+  id        String    @id
+  carId     String
+  car       Cars      @relation(fields: [carId], references: [id])
+  userId    String
+  user      Users     @relation(fields: [userId], references: [id])
+  dateFrom  DateTime
+  dateAt    DateTime
+  total     Decimal
+  createdAt DateTime?
+  updatedAt DateTime  @default(now()) @updatedAt
+
+  @@map("rentals")
+}
